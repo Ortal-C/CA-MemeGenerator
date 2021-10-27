@@ -33,7 +33,7 @@ _createImgs();
 
 function _createImgs(){
     for (let i = 1; i <= 18; i++) {
-        gImgs.push({id: i, url: `../img/meme-imgs/${i}.jpg`, keywords: ['happy']})
+        gImgs.push({id: i, url: `img/meme-imgs/${i}.jpg`, keywords: ['happy']})
     }
 }
 function getKeywords(){
