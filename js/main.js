@@ -5,12 +5,14 @@ var gCanvasContext;
 var gImg;
 
 function onInit() {
+    console.log('Initializing ...');
 	gElCanvas = document.getElementById('canvas');
 	gCanvasContext = gElCanvas.getContext('2d');
 	gImg = null;
 	addEventListeners();
 	renderKeywords();
 	renderImgs();
+    console.log('App is ready to use.');
 }
 
 function renderKeywords() {
@@ -29,7 +31,9 @@ function renderKeywords() {
 function renderImgs() {
 	var images = getImages();
 	const strImgsHtmls = images.map((img) => {
-		return `<img data-imgId="${img.id}" src="${img.url}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
+        // return`<div class="meme" data-imgId="${img.id}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
+	
+		return `<img class="meme" data-imgId="${img.id}" src="${img.url}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
 	});
 
 	document.querySelector('.main-grid').innerHTML = strImgsHtmls.join('');

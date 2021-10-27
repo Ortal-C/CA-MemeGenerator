@@ -20,7 +20,7 @@
 				</nav>
 			</main>
 		</header>
-		<main class="flex direction-column">
+		<main class="main-content flex direction-column center-content">
 			<nav class="main-layout flex space-between align-center">
 				<section class="search-keys">
                     <input type="text" list="keywords-list"/>
@@ -31,7 +31,7 @@
 			</nav>
 			<section class="main-grid grid main-layout">
             </section>
-            <article class="edit-meme-modal">
+            <article class="edit-meme-modal hide">
                 <nav><button class="btn go-back">Go back</button></nav>
                 <main class="edit-area main-layout flex align-center">
                     <canvas id="canvas" onclick="canvasClicked(event)" width="400px" height="400px"></canvas>
@@ -41,16 +41,22 @@
                         <button class="btn switch switch-down"></button>
                         <button class="btn switch"></button>
                         <button class="btn add-text"></button>
-                        <button class="btn delete"></button>
-                        <button class="btn font font-increase"></button>
-                        <button class="btn font font-decrease"></button>
-                        <button class="btn font font-bold"></button>
-                        <button class="btn align-left"></button>
-                        <button class="btn align-center"></button>
-                        <button class="btn align-right"></button>
-                        <select class="fonts">
-                            <option value="impact">Impact</option>
+                        <button class="btn delete" onclick="onDeleteMeme()"></button>
+                        <button class="btn font font-increase" onclick="onFontSizeChange('increase')"></button>
+                        <button class="btn font font-decrease" onclick="onFontSizeChange('decrease')"></button>
+                        <button class="btn font font-bold" onclick="onFontWeightChange()"></button>
+                        <button class="btn align align-left" onclick="onAlignChange('left')"></button>
+                        <button class="btn align align-center" onclick="onAlignChange('center')"></button>
+                        <button class="btn align align-right" onclick="onAlignChange('right')"></button>
+                        <select class="font-type" onchange="onFontChange(this.value)">
+                            <option disabled>Choose font...</option>
+                            <option value="impact" title="recommended">Impact</option>
                             <option value="arial">Arial</option>
+                            <option value="courier new">Courier</option>
+                            <option value="helvetica">Helvetica </option>
+                            <option value="tahoma">Tahoma</option>
+                            <option value="times new roman">Times New Roman</option>
+                            <option value="verdana">Verdana</option>
                         </select>
                         <button class="btn color-change"><input type="color" value="#ffffff" onchange="onSetColor(this.value)"></button>
                         <div class="stickers-area"></div>

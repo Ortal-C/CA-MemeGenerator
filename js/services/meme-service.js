@@ -1,5 +1,7 @@
 'use strict';
 
+const NUM_OF_IMGS = 30;
+
 var gKeywords = {
 	happy: 1,
 	sad: 1,
@@ -21,7 +23,7 @@ var gMeme;
 _createImgs();
 
 function _createImgs() {
-	for (let i = 1; i <= 18; i++) {
+	for (let i = 1; i <= NUM_OF_IMGS; i++) {
 		gImgs.push({ id: i, url: `img/meme-imgs/${i}.jpg`, keywords: ['happy'] });
 	}
 }
@@ -53,12 +55,17 @@ function createMeme(id) {
 			{
 				txt: 'Text goes here...',
 				size: 20,
+				isBold: false,
 				align: 'left',
 				color: 'white',
 			},
 		],
 	};
 	return gMeme;
+}
+
+function deleteMeme(){
+	gMeme=null;
 }
 
 function getMeme() {
@@ -83,8 +90,8 @@ function setLineTxt(text) {
 function getLineSize() {
 	return getSelectedLine().size;
 }
-function setLineSize(size) {
-	getSelectedLine().size = size;
+function setLineSize(diff) {
+	getSelectedLine().size += diff;
 }
 
 function getLineAlign() {
@@ -99,4 +106,12 @@ function getLineColor() {
 }
 function setLineColor(color) {
 	getSelectedLine().color = color;
+}
+
+function isLineTextBold(){
+	return getSelectedLine().isBold ? 'bold' : '';
+}
+
+function toggleBoldLine(){
+	getSelectedLine().isBold = !getSelectedLine().isBold;
 }

@@ -31,6 +31,8 @@ body {
 
 header {
 	background-color: #ff7f00;
+	display: flex;
+	justify-content: center;
 }
 
 a {
@@ -40,12 +42,14 @@ a {
 /* LAYOUT */
 .main-layout {
 	margin: 0px 25px;
+	/* max-width: 600px; */
 }
 
 /* HEADER */
 header main {
 	align-items: center;
 }
+
 .logo {
 	width: 133px;
 	height: 22px;
@@ -56,28 +60,47 @@ header main {
 	justify-content: center;
 	align-items: center;
 	color: white;
-	height: 33px;
+	height: 5vh;
 	width: 100px;
 }
 
 /* MAIN CONTENT */
-
-.keyword{
-	color:black;
+.main-content {
+	height: 90vh;
+	overflow-y: scroll;
+}
+.main-content nav {
+	background-color: whitesmoke;
+}
+.keywords {
+	max-width: 60%;
+}
+.keyword {
+	color: black;
+	margin-inline-end: 10px;
+	margin-inline-start: 10px;
+}
+.keyword:hover {
+	color: tomato;
 }
 
 .main-grid {
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	grid-template-areas:
-		'img11 img12 img13'
-		'img21 img22 img23'
-		'img31 img32 img33';
-	gap: 15px;
+	margin: 10px;
+	grid-template-columns: repeat(3, 150px);
+	grid-template-rows: repeat(3, 150px);
+	gap: 20px;
+	justify-content: center;
+}
+
+.main-grid > * {
+	cursor: pointer;
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
 }
 
 .edit-area {
-    align-items: center;
+	align-items: center;
 	justify-content: center;
 }
 
@@ -90,7 +113,6 @@ canvas {
 	border: 1px solid black;
 }
 
-
 /* CONTROL-BOX */
 
 .control-box {
@@ -101,10 +123,10 @@ canvas {
 		'up down move add delete'
 		'increase decrease bold fonts fonts'
 		'left center right pallette .'
-        'stickers stickers stickers stickers stickers ';
+		'stickers stickers stickers stickers stickers ';
 }
 
-.control-box>*{
+.control-box > * {
 	background-color: rgba(51, 51, 51, 0.05);
 	border-radius: 8px;
 	border-width: 0;
@@ -112,23 +134,23 @@ canvas {
 }
 
 .meme-txt {
-    height: 35px;
+	height: 35px;
 	grid-area: text;
-    background-color: white;
-    border-bottom: 1px solid gray;
-    border-radius: 0%;
+	background-color: white;
+	border-bottom: 1px solid gray;
+	border-radius: 0%;
 }
 
-.fonts {
-    width: 100%;
-    height: 35px;
+.font-type {
+	width: 100%;
+	height: 35px;
 	grid-area: fonts;
 }
 
 .stickers-area {
-    background-color: darkorchid;
-    height: 40px;
-    width: 100%;
+	background-color: darkorchid;
+	height: 40px;
+	width: 100%;
 	grid-area: stickers;
 }
 /* BUTTONS */
@@ -136,11 +158,15 @@ canvas {
 .btn {
 	font-family: Symbols;
 	cursor: pointer;
-    height: 35px;
-    width: 35px;
+	height: 35px;
+	width: 35px;
 }
+.btn.active {
+	color: tomato;
+}
+
 .btn:hover {
-    color:rgb(255, 94, 0);
+	color: tomato;
 }
 
 .btn.switch.switch-down::before {
@@ -191,11 +217,12 @@ canvas {
 /* FOOTER  */
 footer {
 	background-color: #ff7f00;
+	height: 5vh;
 }
 
 footer main {
 	flex-direction: column;
-	justify-content: center;
+	align-items: center;
 }
 
 /* HELPERS */
@@ -206,6 +233,7 @@ footer main {
 .flex {
 	display: flex;
 }
+
 .direction-column {
 	flex-direction: column;
 }
