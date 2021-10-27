@@ -1,49 +1,60 @@
 'use strict';
 
-var gElCanvas;
-var gCanvasContext;
-
-function onInit() {
-	gElCanvas = document.getElementById('canvas');
-	gCanvasContext = gElCanvas.getContext('2d');
-	console.log(gCanvasContext);
-	addEventListeners();
-	renderImgs();
-}
-
 function addEventListeners() {
-	// gElCanvas.addEventListener('', function(){
-	//     alert('mouse up ')
-	// })
+	document.querySelector('.meme-txt').addEventListener('keyup', dynamicText);
 }
 
 function canvasClicked(ev) {
 	console.log(ev);
 }
 
-function renderImgs() {
-	var images = getImages();
-	var keywords = getKeywords();
-	const strImgsHtmls = images.map((img) => {
-		return `<img data-imgId="${img.id}" src="${img.url}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
-	});
-	document.querySelector('.main-grid').innerHTML = strImgsHtmls.join('');
-}
 
-function onImgClick(id) {
+function onImgClick(id, ev) {
 	document.querySelector('.main-grid').classList.add('hide');
-    //createMeme(id)
-    console.log(createMeme(id));
-	var imgUrl = getImgById(id).url;
-    loadImgToCanvas(imgUrl);
+	var gCurrMeme = createMeme(id);
+	if (!gImg) initCanvas(getImgById(id).url);
+	drawImg();
+	drawText(document.querySelector('.meme-txt').placeholder);
 }
 
-function loadImgToCanvas(imgUrl) {
-	var selectedImg = new Image();
-	selectedImg.src = imgUrl;
-	selectedImg.onload = function () {
-		gElCanvas.width = selectedImg.width;
-		gElCanvas.height = selectedImg.height;
-		gCanvasContext.drawImage(selectedImg, 0, 0);
-	};
+function initCanvas(imgUrl) {
+	gImg = new Image();
+	gImg.src = imgUrl;
+	gElCanvas.width = gImg.width;
+	gElCanvas.height = gImg.height;
+}
+
+function dynamicText() {
+	document.querySelector('.meme-txt').addEventListener('keyup', function () {
+		gCanvasContext.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+		var txt = this.value;
+		setLineTxt(txt);
+		drawImg();
+		drawText();
+		gCanvasContext.fillText(txt, 50, 50);
+		gCanvasContext.strokeText(txt, 50, 50);
+	});
+}
+
+function drawImg() {
+	gCanvasContext.drawImage(gImg, 0, 0, gImg.width, gImg.height);
+	gCanvasContext.fillStyle = 'rgba(0, 0, 0, 0)';
+	gCanvasContext.fillRect(0, 0, gImg.width, gImg.height);
+}
+
+function drawText(txt = '') {
+	gCanvasContext.font = `bold ${getLineSize()}px Impact`;
+	gCanvasContext.fillStyle = getSelectedLine().color;
+	gCanvasContext.lineWidth = 2;
+	gCanvasContext.strokeStyle = 'black';
+	if (txt) {
+		gCanvasContext.fillText(txt, 50, 50);
+		gCanvasContext.strokeText(txt, 50, 50);
+	}
+}
+
+
+function onSetColor(color){
+	setLineColor(color);
+	drawText(getLineText());
 }

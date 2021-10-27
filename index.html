@@ -23,21 +23,20 @@
 		<main class="flex direction-column">
 			<nav class="main-layout flex space-between align-center">
 				<section class="search-keys">
-                    <input type="search" />
-				    <input type="submit" value="Serach" />
+                    <input type="text" list="keywords-list"/>
+                    <datalist id="keywords-list"></datalist>
+				    <input type="submit" value="Serach"/>
                 </section>
-                <section class="key-words">
-                    kewWords in here
-                </section>
+                <section class="keywords"></section>
 			</nav>
 			<section class="main-grid grid main-layout">
             </section>
             <article class="edit-meme-modal">
                 <nav><button class="btn go-back">Go back</button></nav>
                 <main class="edit-area main-layout flex align-center">
-                    <canvas id="canvas" width="100px" height="500px" onclick="canvasClicked(event)"></canvas>
+                    <canvas id="canvas" onclick="canvasClicked(event)" width="400px" height="400px"></canvas>
                     <section class="control-box grid">
-                        <input type="text" class="meme-txt" id="" placeholder="Text goes here...">
+                        <input type="text" class="meme-txt" id="" placeholder="Text goes here..." value="">
                         <button class="btn switch switch-up"></button>
                         <button class="btn switch switch-down"></button>
                         <button class="btn switch"></button>
@@ -53,7 +52,7 @@
                             <option value="impact">Impact</option>
                             <option value="arial">Arial</option>
                         </select>
-                        <button class="btn color-change"></button>
+                        <button class="btn color-change"><input type="color" value="#ffffff" onchange="onSetColor(this.value)"></button>
                         <div class="stickers-area"></div>
                     </section>
                 </main>
@@ -69,7 +68,9 @@
 		</footer>
 
         <!-- SCRIPTS  -->
+        <script src="js/services/utils-service.js"></script>
         <script src="js/services/meme-service.js"></script>
         <script src="js/meme-controller.js"></script>
+        <script src="js/main.js"></script>
 	</body>
 </html>

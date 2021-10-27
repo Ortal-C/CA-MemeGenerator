@@ -25,6 +25,14 @@ function _createImgs() {
 		gImgs.push({ id: i, url: `img/meme-imgs/${i}.jpg`, keywords: ['happy'] });
 	}
 }
+
+function createImg(id, url, keywords) {
+	return {
+		id,
+		url,
+		keywords,
+	};
+}
 function getKeywords() {
 	return gKeywords;
 }
@@ -37,12 +45,8 @@ function getImgById(id) {
 	return gImgs[id - 1];
 }
 
-function getMeme() {
-	return gMeme;
-}
-
 function createMeme(id) {
-	return {
+	gMeme = {
 		selectedImgId: id,
 		selectedLineIdx: 0,
 		lines: [
@@ -50,8 +54,49 @@ function createMeme(id) {
 				txt: 'Text goes here...',
 				size: 20,
 				align: 'left',
-				color: 'red',
+				color: 'white',
 			},
 		],
 	};
+	return gMeme;
+}
+
+function getMeme() {
+	return gMeme;
+}
+
+function getSelectedLine() {
+	return gMeme.lines[gMeme.selectedLineIdx];
+}
+
+function setMemeLineIdx(idx) {
+	gMeme.selectedLineIdx = idx;
+}
+
+function getLineText() {
+	return getSelectedLine().txt;
+}
+function setLineTxt(text) {
+	getSelectedLine().txt = text;
+}
+
+function getLineSize() {
+	return getSelectedLine().size;
+}
+function setLineSize(size) {
+	getSelectedLine().size = size;
+}
+
+function getLineAlign() {
+	return getSelectedLine().align;
+}
+function setLineAlign(align) {
+	getSelectedLine().align = align;
+}
+
+function getLineColor() {
+	return getSelectedLine().color;
+}
+function setLineColor(color) {
+	getSelectedLine().color = color;
 }
