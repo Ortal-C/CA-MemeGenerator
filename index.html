@@ -10,7 +10,13 @@
 	<body onload="onInit()">
 		<header>
 			<main class="main-layout flex space-between align-center">
-				<img class="logo" src="img/logo.png" alt="Brand" href="#" title="Meme Generator" />
+				<img
+					class="logo"
+					src="img/logo.png"
+					alt="Brand"
+					href="#"
+					title="Meme Generator"
+				/>
 				<nav>
 					<ul class="main-nav flex clean-list">
 						<li><a href="#">Gallery</a></li>
@@ -23,60 +29,119 @@
 		<main class="main-content flex direction-column center-content">
 			<nav class="main-layout flex space-between align-center">
 				<section class="search-keys">
-                    <input type="text" list="keywords-list"/>
-                    <datalist id="keywords-list"></datalist>
-				    <input type="submit" value="Serach"/>
-                </section>
-                <section class="keywords"></section>
+					<input type="text" list="keywords-list" />
+					<datalist id="keywords-list"></datalist>
+					<input type="submit" value="Serach" />
+				</section>
+				<section class="keywords"></section>
 			</nav>
-			<section class="main-grid grid main-layout">
-            </section>
-            <article class="edit-meme-modal hide">
-                <nav><button class="btn go-back">Go back</button></nav>
-                <main class="edit-area main-layout flex align-center">
-                    <canvas id="canvas" onclick="canvasClicked(event)" width="400px" height="400px"></canvas>
-                    <section class="control-box grid">
-                        <input type="text" class="meme-txt" id="" placeholder="Text goes here..." value="">
-                        <button class="btn switch switch-up"></button>
-                        <button class="btn switch switch-down"></button>
-                        <button class="btn switch"></button>
-                        <button class="btn add-text"></button>
-                        <button class="btn delete" onclick="onDeleteMeme()"></button>
-                        <button class="btn font font-increase" onclick="onFontSizeChange('increase')"></button>
-                        <button class="btn font font-decrease" onclick="onFontSizeChange('decrease')"></button>
-                        <button class="btn font font-bold" onclick="onFontWeightChange()"></button>
-                        <button class="btn align align-left" onclick="onAlignChange('left')"></button>
-                        <button class="btn align align-center" onclick="onAlignChange('center')"></button>
-                        <button class="btn align align-right" onclick="onAlignChange('right')"></button>
-                        <select class="font-type" onchange="onFontChange(this.value)">
-                            <option disabled>Choose font...</option>
-                            <option value="impact" title="recommended">Impact</option>
-                            <option value="arial">Arial</option>
-                            <option value="courier new">Courier</option>
-                            <option value="helvetica">Helvetica </option>
-                            <option value="tahoma">Tahoma</option>
-                            <option value="times new roman">Times New Roman</option>
-                            <option value="verdana">Verdana</option>
-                        </select>
-                        <button class="btn color-change"><input type="color" value="#ffffff" onchange="onSetColor(this.value)"></button>
-                        <div class="stickers-area"></div>
-                    </section>
-                </main>
-            </article>
-            
+            <button class="btn go-back hide" onclick="navigateGallery()">Go Back to Gallery</button>
+			<button class="btn continue-edit hide" onclick="onImgClick()"> Continue edit</button>
+			</nav>
+			<section class="main-grid grid main-layout"></section>
+			<article class="edit-meme-modal hide">
+				<main class="edit-area main-layout flex align-center">
+					<canvas
+						id="canvas"
+						onclick="canvasClicked(event)"
+						width="400px"
+						height="400px"
+					></canvas>
+					<section class="control-box grid">
+						<input
+							type="text"
+							class="meme-txt"
+							id=""
+							placeholder="Text goes here..."
+							value=""
+						/>
+						<button class="btn switch switch-up" title="Move line up"></button>
+						<button
+							class="btn switch switch-down"
+							title="Move line down"
+						></button>
+						<button class="btn switch"></button>
+						<button class="btn add-text" title="Add another row"></button>
+						<button
+							class="btn delete"
+							onclick="onDeleteMeme()"
+							title="Delete meme"
+						></button>
+						<button
+							class="btn font font-increase"
+							onclick="onFontSizeChange('increase')"
+							title="Increase font size"
+						></button>
+						<button
+							class="btn font font-decrease"
+							onclick="onFontSizeChange('decrease')"
+							title="Decrease font size"
+						></button>
+						<button
+							class="btn font font-bold"
+							onclick="onFontWeightChange()"
+							title="Bold"
+						></button>
+						<button
+							class="btn align align-left"
+							onclick="onAlignChange('left')"
+							title="Align text left"
+						></button>
+						<button
+							class="btn align align-center"
+							onclick="onAlignChange('center')"
+							title="Align text center"
+						></button>
+						<button
+							class="btn align align-right"
+							onclick="onAlignChange('right')"
+							title="Align text right"
+						></button>
+						<select
+							class="font-type"
+							onchange="onFontChange(this.value)"
+							title="Choose font"
+						>
+							<option disabled>Choose font...</option>
+							<option value="impact" title="recommended">Impact</option>
+							<option value="arial">Arial</option>
+							<option value="courier new">Courier</option>
+							<option value="helvetica">Helvetica</option>
+							<option value="tahoma">Tahoma</option>
+							<option value="times new roman">Times New Roman</option>
+							<option value="verdana">Verdana</option>
+						</select>
+						<button class="btn color-change">
+							<input
+								type="color"
+								value="#ffffff"
+								onchange="onSetColor(this.value)"
+								title="Change text color"
+							/>
+						</button>
+						<div class="stickers-area"></div>
+					</section>
+				</main>
+			</article>
 		</main>
 
 		<footer>
-            <main class="main-layout flex align-center">
-                <img class="logo" src="img/logo.png" alt="Brand" href="#" title="Meme Generator" />
-                <h3>All rights reserved</h3>
-            </main>
+			<main class="main-layout flex align-center">
+				<img
+					class="logo"
+					src="img/logo.png"
+					alt="Brand"
+					href="#"
+					title="Meme Generator"
+				/>
+				<h3>All rights reserved</h3>
+			</main>
 		</footer>
 
-        <!-- SCRIPTS  -->
-        <script src="js/services/utils-service.js"></script>
-        <script src="js/services/meme-service.js"></script>
-        <script src="js/meme-controller.js"></script>
-        <script src="js/main.js"></script>
+		<!-- SCRIPTS  -->
+		<script src="js/services/utils-service.js"></script>
+		<script src="js/services/meme-service.js"></script>
+		<script src="js/meme-controller.js"></script>
+		<script src="js/main.js"></script>
 	</body>
 </html>
