@@ -1,0 +1,84 @@
+*{
+    box-sizing: border-box;
+    margin: 0; /*not sure ?*/
+}
+/* TYPOGRAPHY */
+@font-face {
+    font-family: Montserrat-Thin, sans-serif;
+    src: url(../fonts/Montserrat/Montserrat-Thin.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Regular, sans-serif;
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Medium, sans-serif;
+    src: url(../fonts/Montserrat/Montserrat-Medium.ttf);
+}
+
+/* BASIC */
+body{
+    font-family: Montserrat-Regular, sans-serif;
+    font-size: 0.6rem; 
+}
+header{
+    background-color: #ff7f00;
+}
+a{
+    text-decoration: none;
+}
+footer{
+    background-color: #ff7f00;
+}
+footer main{
+    flex-direction: column;
+    justify-content: center;
+}
+/* LAYOUT */
+.main-layout{
+    margin: 0px 25px;
+}
+
+/* HEADER */
+header main{
+    align-items: center;
+}
+.logo{
+    width: 133px;
+    height:22px;
+}
+
+.main-nav a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    height: 33px;
+    width: 100px;
+}    
+
+/* MAIN CONTENT */
+
+
+/* HELPERS */
+.flex{
+    display: flex;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.align-center{
+    align-content: center;
+}
+
+/* List helpers */
+.clean-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
