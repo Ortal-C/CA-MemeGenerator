@@ -35,9 +35,9 @@
             <article class="edit-meme-modal">
                 <nav><button class="btn go-back">Go back</button></nav>
                 <main class="edit-area main-layout flex align-center">
-                    <canvas width="500px" height="500px"></canvas>
+                    <canvas id="canvas" width="100px" height="500px" onclick="canvasClicked(event)"></canvas>
                     <section class="control-box grid">
-                        <input type="text" class="meme-txt" id="" placeholder="Your text in here...">
+                        <input type="text" class="meme-txt" id="" placeholder="Text goes here...">
                         <button class="btn switch switch-up"></button>
                         <button class="btn switch switch-down"></button>
                         <button class="btn switch"></button>
