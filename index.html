@@ -7,7 +7,7 @@
 		<title>Meme Generator</title>
 		<link rel="stylesheet" href="css/main.css" />
 	</head>
-	<body>
+	<body onload="onInit()">
 		<header>
 			<main class="main-layout flex space-between align-center">
 				<img class="logo" src="img/logo.png" alt="Brand" href="#" title="Meme Generator" />
@@ -20,19 +20,45 @@
 				</nav>
 			</main>
 		</header>
-		<main>
+		<main class="flex direction-column">
 			<nav class="main-layout flex space-between align-center">
 				<section class="search-keys">
                     <input type="search" />
 				    <input type="submit" value="Serach" />
                 </section>
                 <section class="key-words">
-                    Key words stuff
+                    kewWords in here
                 </section>
 			</nav>
-			<section class="main-grid">
-                
+			<section class="main-grid grid main-layout">
             </section>
+            <article class="edit-meme-modal">
+                <nav><button class="btn go-back">Go back</button></nav>
+                <main class="edit-area main-layout flex align-center">
+                    <canvas width="500px" height="500px"></canvas>
+                    <section class="control-box grid">
+                        <input type="text" class="meme-txt" id="" placeholder="Your text in here...">
+                        <button class="btn switch switch-up"></button>
+                        <button class="btn switch switch-down"></button>
+                        <button class="btn switch"></button>
+                        <button class="btn add-text"></button>
+                        <button class="btn delete"></button>
+                        <button class="btn font font-increase"></button>
+                        <button class="btn font font-decrease"></button>
+                        <button class="btn font font-bold"></button>
+                        <button class="btn align-left"></button>
+                        <button class="btn align-center"></button>
+                        <button class="btn align-right"></button>
+                        <select class="fonts">
+                            <option value="impact">Impact</option>
+                            <option value="arial">Arial</option>
+                        </select>
+                        <button class="btn color-change"></button>
+                        <div class="stickers-area"></div>
+                    </section>
+                </main>
+            </article>
+            
 		</main>
 
 		<footer>
@@ -41,5 +67,9 @@
                 <h3>All rights reserved</h3>
             </main>
 		</footer>
+
+        <!-- SCRIPTS  -->
+        <script src="js/services/meme-service.js"></script>
+        <script src="js/meme-controller.js"></script>
 	</body>
 </html>
