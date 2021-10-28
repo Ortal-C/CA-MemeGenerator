@@ -1,34 +1,63 @@
 'use strict';
+//***************************************************************************************/
+//********************************** MEME CONTROLLER ************************************/
+//***************************************************************************************/
+
+// CONST
 const NUM_OF_STICKERS = 23;
+
+// GLOBAL VARIABLES
+var gElCanvas;
+var gCanvasContext;
+var gPos;
+
+function initMeme(){
+	gElCanvas = document.getElementById('canvas');
+	gCanvasContext = gElCanvas.getContext('2d');
+	addEventListeners()
+}
 
 function addEventListeners() {
 	document.querySelector('.meme-txt').addEventListener('keyup', dynamicText);
+	document.querySelector('#canvas').addEventListener('mousedown', onCanvasMouseEvents);
+	document.querySelector('#canvas').addEventListener('mousemove',  onCanvasMouseEvents);
+	document.querySelector('#canvas').addEventListener('mouseup',  onCanvasMouseEvents);
 }
 
-function canvasClicked(ev) {
-	console.log(ev);
-}
+function onCanvasMouseEvents(ev) {
+	switch (ev.type) {
+		case 'mousedown':
+			gPos = {x: ev.offsetX, y:ev.offsetY}
 
-function onImgClick(id) {
-	showOnlyEditor();
-	hideElement('continue-edit');
-	var imgUrl = getImgById(id).url;
-	if (!gImg || gImg.url !== imgUrl) {
-		if (gImg) console.log('Discarding last draft.');
-		createMeme(id);
-		initCanvas(imgUrl);
-		clearText();
-		renderMeme();
-		renderStickers();
-		console.log(`Meme template #${id} is ready to edit.`);
-		return;
+			console.log('down');
+			break;
+		case 'mousemove':
+			gPos = {x: ev.offsetX, y:ev.offsetY}
+			console.log('move');
+			// renderMeme()
+			break;
+		case 'mouseup':
+			console.log('up');
+
+			break;
+	
+		default:
+			break;
 	}
-	onContinueEdit();
 }
+
 function onContinueEdit(){
 	console.log('Continue editing img.');
 	showOnlyEditor();
 	dynamicText();
+}
+
+function quitEditMeme() {
+	gImg = null;
+	clearText();
+	clearCanvas();
+	deleteMeme();
+	navigateGallery();
 }
 
 function initCanvas(imgUrl) {
@@ -54,11 +83,8 @@ function renderStickers(){
 function dynamicText() {
 	clearCanvas();
 	var txt = document.querySelector('.meme-txt').value;
-	setLineTxt(txt);
-	drawImg();
-	drawText();
-	gCanvasContext.fillText(txt, gImg.width / 2, getLineSize() * 2);
-	gCanvasContext.strokeText(txt, gImg.width / 2, getLineSize() * 2);
+	setLineText(txt);
+	renderMeme();
 }
 
 function drawImg() {
@@ -95,15 +121,12 @@ function renderMeme() {
 	drawText(getLineText());
 }
 
-function onDeleteMeme() {
-	if (confirm('Are you sure you want to discard changes?')) quitEditMeme();
+function onSwitchFocus(){
+	switchFocus();
 }
-function quitEditMeme() {
-	gImg = null;
-	clearText();
-	clearCanvas();
-	deleteMeme();
-	navigateGallery();
+
+function onAddLine(){
+	addNewLine();
 }
 
 function onFontSizeChange(operation) {
@@ -138,6 +161,11 @@ function onAlignChange(align) {
 
 function onFontChange(value) {
 	renderMeme();
+}
+
+
+function onDeleteMeme() {
+	if (confirm('Are you sure you want to discard changes?')) quitEditMeme();
 }
 
 function onDownloadMeme(elLink) {

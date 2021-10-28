@@ -22,7 +22,7 @@
 			</main>
 		</header>
 		<main class="main-layout main-content flex direction-column center-content">
-			<nav class="flex space-between align-center">
+			<nav class="flex align-center">
 				<section class="search-keys">
 					<input class="key-input" type="text" list="keywords-list" />
 					<datalist id="keywords-list"></datalist>
@@ -34,11 +34,11 @@
 			<section class="main-layout main-grid grid"></section>
 			<article class="edit-meme-modal hide">
 				<main class="main-layout edit-area flex direction-column align-center">
-					<canvas id="canvas" onclick="canvasClicked(event)" width="400px" height="400px"></canvas>
+					<canvas id="canvas" onclick="onCanvasMouseEvents(event)" width="400px" height="400px"></canvas>
 					<section class="control-box">
 						<input class="meme-txt" type="text" placeholder="Text goes here..." value=""/>
-						<button class="btn add-text" title="Add another row"></button>
-						<button class="btn switch-lines" title="switch focus lines"></button>
+						<button class="btn add-text" title="Add another row" onclick="onAddLine()"></button>
+						<button class="btn switch-lines" title="switch focus lines" onclick="onSwitchFocus()"></button>
 						<button class="btn font font-increase" onclick="onFontSizeChange('increase')" title="Increase font size" ></button>
 						<button class="btn font font-decrease" onclick="onFontSizeChange('decrease')" title="Decrease font size" ></button>
 						<button class="btn font font-bold" onclick="onFontWeightChange()" title="Bold" ></button>
@@ -79,8 +79,10 @@
 		<!-- SCRIPTS  -->
 		<script src="js/services/storage-services.js"></script>
 		<script src="js/services/utils-service.js"></script>
+		<script src="js/services/imgs-service.js"></script>
 		<script src="js/services/meme-service.js"></script>
 		<script src="js/meme-controller.js"></script>
+		<script src="js/imgs-controller.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

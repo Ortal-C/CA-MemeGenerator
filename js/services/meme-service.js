@@ -1,53 +1,16 @@
 'use strict';
 
-const NUM_OF_IMGS = 30;
+//***************************************************************************************/
+//*********************************** MEME SERVICES *************************************/
+//***************************************************************************************/
+
+//CONST
 const KEY = 'userMemesDB';
 
-var gKeywords = {
-	happy: 1,
-	sad: 1,
-	laugh: 1,
-	sleep: 1,
-	sarcastic: 1,
-	funny: 1,
-	animals: 1,
-	akward: 1,
-	love: 1,
-	drinks: 1,
-	kids: 1,
-	cute: 1,
-};
-
-var gImgs = [];
+// GLOBAL VARIABLES
 var gSavedMemes = [];
 var gMeme;
 
-_createImgs();
-
-function _createImgs() {
-	for (let i = 1; i <= NUM_OF_IMGS; i++) {
-		gImgs.push({ id: i, url: `img/meme-imgs/${i}.jpg`, keywords: ['happy'] });
-	}
-}
-
-function createImg(id, url, keywords) {
-	return {
-		id,
-		url,
-		keywords,
-	};
-}
-function getKeywords() {
-	return gKeywords;
-}
-
-function getImages() {
-	return gImgs;
-}
-
-function getImgById(id) {
-	return gImgs[id - 1];
-}
 
 function createMeme(id) {
 	gMeme = {
@@ -56,9 +19,9 @@ function createMeme(id) {
 		lines: [
 			{
 				txt: 'Text goes here...',
-				size: 20,
+				size: 30,
 				isBold: false,
-				align: 'left',
+				align: 'center',
 				color: 'white',
 			},
 		],
@@ -74,18 +37,60 @@ function getMeme() {
 	return gMeme;
 }
 
-function getSelectedLine() {
-	return gMeme.lines[gMeme.selectedLineIdx];
+function getMemeImgId() {
+	return gMeme.selectedImgId;
+}
+
+function getMemeLineIdx() {
+	return gMeme.selectedLineIdx
 }
 
 function setMemeLineIdx(idx) {
 	gMeme.selectedLineIdx = idx;
 }
 
+function getMemeLines(){
+	return gMeme.lines;
+}
+
+function getSelectedLine() {
+	return gMeme.lines[gMeme.selectedLineIdx];
+}
+
+function getNumOfLines(){
+	return gMeme.lines.length
+}
+
+function switchFocus(){
+	var currLine = getMemeLineIdx();
+	setMemeLineIdx((getNumOfLines()-1 === currLine) ? 0 : currLine+1);
+}
+
+function addNewLine() {
+	gMeme.lines.push({
+		txt: 'Text goes here...',
+		size: 30,
+		isBold: false,
+		align: 'center',
+		color: 'white',
+	});
+}
+
+function saveMemeToStorage(memeContent) {
+	gSavedMemes.push({ meme: gMeme, url: memeContent });
+	saveToStorage(KEY, gSavedMemes);
+	console.log(`${KEY} has updated and saved to storage.`);
+	gMeme = null;
+}
+
+//***************************************************************************************/
+//**************************** MEME SELECTED LINE SERVICES ******************************/
+//***************************************************************************************/
+
 function getLineText() {
 	return getSelectedLine().txt;
 }
-function setLineTxt(text) {
+function setLineText(text) {
 	getSelectedLine().txt = text;
 }
 
@@ -121,12 +126,5 @@ function toggleBoldLine() {
 function toggleUpperCaseLine(isUpper) {
 	var txt = getLineText();
 	txt = isUpper ? txt.toUpperCase() : txt.toLowerCase();
-	setLineTxt(txt);
-}
-
-function saveMemeToStorage(memeContent) {
-	gSavedMemes.push({ meme: gMeme, url: memeContent });
-	saveToStorage(KEY, gSavedMemes);
-	console.log(`${KEY} has updated and saved to storage.`);
-	gMeme = null;
+	setLineText(txt);
 }

@@ -1,20 +1,15 @@
 'use strict';
 
-var gElCanvas;
-var gCanvasContext;
-var gImg;
-
 function onInit() {
     console.log('Initializing ...');
-	gElCanvas = document.getElementById('canvas');
-	gCanvasContext = gElCanvas.getContext('2d');
+	initMeme();
+	initImgs();
 	gImg = null;
 	addEventListeners();
 	renderKeywords();
 	renderImgs();
     console.log('App is ready to use.');
 }
-
 
 function toggleMenu() {
 	document.body.classList.toggle('menu-open');
@@ -25,10 +20,10 @@ function toggleMenu() {
 
 function renderKeywords() {
 	var keywords = Object.keys(getKeywords());
-	keywords.sort((k1,k2)=> sortByText(k1, k2));
-    const strKeywordsHtmls = keywords.map(keyword=>{
-        return `<a class="keyword" href="#">${keyword}</a>`
+	const strKeywordsHtmls = keywords.map(keyword=>{
+		return `<a class="keyword" href="#" title="${keyword}">${keyword}</a>`
     }) 
+	keywords.sort((k1,k2)=> sortByText(k1, k2));
 	const strListOptionsdHtmls = keywords.map(keyword=>{
 		return `<option value="${keyword}">${keyword}</option>`
 	}) 
@@ -37,7 +32,7 @@ function renderKeywords() {
 }
 
 function renderImgs() {
-	var images = getImages();
+	var images = getImgs();
 	const strImgsHtmls = images.map((img) => {
         // return`<div class="meme" data-imgId="${img.id}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
 	
@@ -68,19 +63,21 @@ function navigateUserMemes(){
 function navigateAbout(){
 	console.log('in about');
 }
-
+//
 function showOnlyGallery(){
 	hideElement('user-meme-area');
 	hideElement('edit-meme-modal');
 	showElement('main-grid');
 	if (gImg) showElement('continue-edit');
 }
+
 function showOnlyUserMemes(){
 	hideElement('main-grid');
 	hideElement('edit-meme-modal');
 	showElement('user-meme-area');
 	if (gImg) showElement('continue-edit');
 }
+
 function showOnlyEditor(){
 	hideElement('main-grid');
 	hideElement('continue-edit')
