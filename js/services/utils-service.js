@@ -12,6 +12,10 @@ function showElement(selector) {
 	document.querySelector(`.${selector}`).classList.remove('hide');
 }
 
+function isValueInRange(value, lowerBound, upperBound){
+	return value >= lowerBound && value <= upperBound;
+}
+
 function sortByText(txt1, txt2) {
 	var name1 = txt1.toLowerCase();
 	var name2 = txt2.toLowerCase();

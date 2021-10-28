@@ -17,12 +17,18 @@ function createMeme(id) {
 		selectedImgId: id,
 		selectedLineIdx: 0,
 		lines: [
+			// TODO: MAKE IT GENERAL
 			{
 				txt: 'Text goes here...',
 				size: 30,
 				isBold: false,
 				align: 'center',
 				color: 'white',
+				isDrag: false,
+				pos:{
+					start: {x:0, y:0},
+					end: {x:0, y:0},
+				},
 			},
 		],
 	};
@@ -73,6 +79,11 @@ function addNewLine() {
 		isBold: false,
 		align: 'center',
 		color: 'white',
+		isDrag: false,
+		pos:{
+			start: {x:0, y:0},
+			end: {x:0, y:0},
+		},
 	});
 }
 
@@ -127,4 +138,23 @@ function toggleUpperCaseLine(isUpper) {
 	var txt = getLineText();
 	txt = isUpper ? txt.toUpperCase() : txt.toLowerCase();
 	setLineText(txt);
+}
+
+function getLinePositions() {
+	return getSelectedLine().pos;
+}
+
+function getLineStartPosition() {
+	return getLinePositions().start;
+}
+
+function getLineEndPosition() {
+	return getLinePositions().end;
+}
+
+function setLineStartPosistion(startPos) {
+	var currLinePositions = getLinePositions();
+	var lineSize = getLineSize();
+	currLinePositions.start = startPos;
+	currLinePositions.end.y = startPos.y + lineSize;
 }
