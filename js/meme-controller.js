@@ -11,6 +11,8 @@ var gElCanvas;
 var gCanvasContext;
 var gPos;
 
+//***************************************************************************************/
+
 function initMeme(){
 	gElCanvas = document.getElementById('canvas');
 	gCanvasContext = gElCanvas.getContext('2d');
@@ -52,21 +54,24 @@ function onContinueEdit(){
 	dynamicText();
 }
 
-function quitEditMeme() {
+function discardChanges(){
 	gImg = null;
 	clearText();
 	clearCanvas();
 	deleteMeme();
+}
+
+function quitEditMeme() {
+	discardChanges();
 	navigateGallery();
 }
 
 function initCanvas(imgUrl) {
 	gImg = new Image();
-	gImg.url = imgUrl;
-	gImg.src = imgUrl;
-	if (gImg.width > 300 || gImg.height > 300){
-		gImg.width *=0.6;
-		gImg.height *=0.6;
+	gImg.url = gImg.src = imgUrl;
+	while (gImg.width > 300 || gImg.height > 300){
+		gImg.width *= 0.75;
+		gImg.height *= 0.75;
 	}
 	gElCanvas.width = gImg.width;
 	gElCanvas.height = gImg.height;

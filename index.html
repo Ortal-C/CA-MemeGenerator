@@ -22,11 +22,11 @@
 			</main>
 		</header>
 		<main class="main-layout main-content flex direction-column center-content">
-			<nav class="flex align-center">
+			<nav class="keywords-nav flex align-center">
 				<section class="search-keys">
-					<input class="key-input" type="text" list="keywords-list" />
+					<input class="key-input" type="text" list="keywords-list" onchange="onSearch()"/>
 					<datalist id="keywords-list"></datalist>
-					<button class="btn search-keys"></button>
+					<button class="btn search-keys" onclick="onSearch()"></button>
 				</section>
 				<section class="keywords"></section>
 			</nav>
@@ -34,7 +34,7 @@
 			<section class="main-layout main-grid grid"></section>
 			<article class="edit-meme-modal hide">
 				<main class="main-layout edit-area flex direction-column align-center">
-					<canvas id="canvas" onclick="onCanvasMouseEvents(event)" width="400px" height="400px"></canvas>
+					<canvas id="canvas" onclick="onCanvasMouseEvents(event)" width="200px" height="200px"></canvas>
 					<section class="control-box">
 						<input class="meme-txt" type="text" placeholder="Text goes here..." value=""/>
 						<button class="btn add-text" title="Add another row" onclick="onAddLine()"></button>
@@ -72,7 +72,6 @@
 		<footer>
 			<main class="main-layout flex align-center">
 				<img class="logo" src="img/logo.png" alt="MemeGen" href="#" title="Meme Generator" />
-				<h3>All rights reserved</h3>
 			</main>
 		</footer>
 

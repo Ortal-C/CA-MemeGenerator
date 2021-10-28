@@ -4,7 +4,6 @@ function onInit() {
     console.log('Initializing ...');
 	initMeme();
 	initImgs();
-	gImg = null;
 	addEventListeners();
 	renderKeywords();
 	renderImgs();
@@ -34,9 +33,7 @@ function renderKeywords() {
 function renderImgs() {
 	var images = getImgs();
 	const strImgsHtmls = images.map((img) => {
-        // return`<div class="meme" data-imgId="${img.id}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
-	
-		return `<img class="meme" data-imgId="${img.id}" src="${img.url}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
+        return `<img class="meme" data-imgId="${img.id}" src="${img.url}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
 	});
 
 	document.querySelector('.main-grid').innerHTML = strImgsHtmls.join('');
@@ -74,6 +71,7 @@ function showOnlyGallery(){
 function showOnlyUserMemes(){
 	hideElement('main-grid');
 	hideElement('edit-meme-modal');
+	hideElement('keywords-nav')
 	showElement('user-meme-area');
 	if (gImg) showElement('continue-edit');
 }
@@ -82,5 +80,6 @@ function showOnlyEditor(){
 	hideElement('main-grid');
 	hideElement('continue-edit')
 	hideElement('user-meme-area');
+	hideElement('keywords-nav')
 	showElement('edit-meme-modal');
 }

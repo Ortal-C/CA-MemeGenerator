@@ -128,15 +128,15 @@
 	grid-template-columns: repeat(3,1fr);
 	grid-template-rows: auto;
 	background-color: whitesmoke;
-	height: 100px;
-	padding:10px;
+	height: 75px;
+	padding: 0px 5px;
 	width: 100%;
 	grid-area: stickers;
 	overflow: scroll;
 }
 .stickers-area >*{
-	height: 60px;
-	width: 60px;
+	height: 50px;
+	width: 50px;
 	margin: 10px;
 }
 

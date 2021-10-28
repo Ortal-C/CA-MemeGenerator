@@ -51,12 +51,14 @@ a {
 
 .btn-menu {
 	display: none;
+	height: 5vh;
 }
+
 
 /* MAIN CONTENT */
 .main-content {
 	height: 90vh;
-	padding: 10px 0px;
+	padding-bottom: 10px;
 	overflow-y: scroll;
 }
 
@@ -84,16 +86,20 @@ a {
 .keywords {
 	width: 90%;
 	display: flex;
-	flex-wrap: no-wrap;
-	height: 2rem;
-	margin: 10px;
-	padding: 0px 10px;
+	/* flex-wrap: no-wrap; */
+	/* height: 2rem; */
+	/* margin: 10px; */
+	padding: 0px 5px;
 	overflow-x: scroll;
+	overflow-y:hidden;
 }
+
 .keyword {
+	margin: 10px;
+	width:200px;
+	font-size: 0.5rem;
 	font-family: Montserrat-Regular;
 	color: black;
-	margin-inline-end: 20px;
 }
 .keyword:hover {
 	color: tomato;
@@ -134,10 +140,11 @@ a {
 
 .edit-area > * {
 	margin: 10px;
-	margin-inline-end: 20px;
 }
 
 canvas {
+	min-width: 200px;
+	min-height: 200px;
 	border: 1px solid black;
 }
 
@@ -269,7 +276,6 @@ footer main {
 		justify-content: center;
 		align-items: center;
 		color: white;
-		height: 5vh;
 		width: 100px;
 	}
 

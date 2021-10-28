@@ -7,6 +7,8 @@
 // GLOBAL VARIABLES
 var gImg;
 
+//***************************************************************************************/
+
 function initImgs() {
 	createImgs();
 	createKeywords();
@@ -17,7 +19,10 @@ function onImgClick(id) {
 	hideElement('continue-edit');
 	var imgUrl = getImgById(id).url;
 	if (!gImg || gImg.url !== imgUrl) {
-		if (gImg) console.log('Discarding last draft.');
+		if (gImg){
+            console.log('Discarding last draft.');
+            discardChanges()
+        } 
 		createMeme(id);
 		initCanvas(imgUrl);
 		clearText();
@@ -27,4 +32,12 @@ function onImgClick(id) {
 		return;
 	}
 	onContinueEdit();
+}
+
+function onSearch() {
+	const searchKey = document.querySelector('.key-input').value;
+}
+
+function setUrl(url){
+    gImg.url = url;
 }
