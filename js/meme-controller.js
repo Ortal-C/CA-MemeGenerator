@@ -1,4 +1,6 @@
 'use strict';
+const NUM_OF_STICKERS = 23;
+const MEME_HEIGHT = gElCanvas.height;
 
 function addEventListeners() {
 	document.querySelector('.meme-txt').addEventListener('keyup', dynamicText);
@@ -21,21 +23,34 @@ function onImgClick(id) {
 	showElement('btn.go-back');
 	hideElement('continue-edit');
 	hideElement('main-grid');
-	
+
 	var imgUrl = getImgById(id).url;
 	if (!gImg || gImg.src !== imgUrl) {
 		createMeme(id);
 		initCanvas(imgUrl);
 	}
 	renderMeme();
+	renderStickers();
 	console.log(`Meme template #${id} is ready to edit.`);
 }
 
 function initCanvas(imgUrl) {
 	gImg = new Image();
 	gImg.src = imgUrl;
+	if (gImg.width > 300 || gImg.height > 300){
+		gImg.width *=0.6;
+		gImg.height *=0.6;
+	}
 	gElCanvas.width = gImg.width;
 	gElCanvas.height = gImg.height;
+}
+
+function renderStickers(){
+	var strHtml=''
+	for (let i = 1; i <= NUM_OF_STICKERS; i++) {		
+		strHtml+= `<img class="sticker" src="img/stickers/${i}.png"/>`;
+	}
+	document.querySelector('.stickers-area').innerHTML = strHtml;
 }
 
 function dynamicText() {
@@ -78,14 +93,14 @@ function renderMeme() {
 }
 
 function onDeleteMeme() {
-	if (confirm('Are you sure you want to discard changes?')) {
-		gImg = null;
-		clearCanvas();
-		deleteMeme();
-		navigateGallery();
-	}
+	if (confirm('Are you sure you want to discard changes?')) quitEditMeme();
 }
-
+function quitEditMeme() {
+	gImg = null;
+	clearCanvas();
+	deleteMeme();
+	navigateGallery();
+}
 function navigateGallery() {
 	hideElement('edit-meme-modal');
 	hideElement('btn.go-back');
@@ -110,6 +125,12 @@ function onFontWeightChange() {
 	renderMeme();
 }
 
+function onCaseChange(){
+	document.querySelector('.btn.text-case').classList.toggle('active');
+	toggleUpperCaseLine(document.querySelector('.btn.text-case').classList.contains('active'));
+	renderMeme();
+}
+
 function onAlignChange(align) {
 	document.querySelector(`.align-${getLineAlign()}`).classList.remove('active');
 	document.querySelector(`.align-${align}`).classList.add('active');
@@ -119,4 +140,17 @@ function onAlignChange(align) {
 
 function onFontChange(value) {
 	renderMeme();
+}
+
+function onDownloadMeme(elLink) {
+	var imgContent = gElCanvas.toDataURL('image/jpeg');
+	elLink.href = imgContent;
+}
+
+function onSaveMeme() {
+	if (confirm('Saving meme would prevent you continue editing in future. To continue?')){
+		const imgContent = JSON.stringify(gElCanvas.toDataURL('image/png'));
+		saveMemeToStorage(imgContent);
+		quitEditMeme();
+	}
 }

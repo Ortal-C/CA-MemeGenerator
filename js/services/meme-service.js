@@ -1,6 +1,7 @@
 'use strict';
 
 const NUM_OF_IMGS = 30;
+const KEY = 'userMemesDB';
 
 var gKeywords = {
 	happy: 1,
@@ -18,6 +19,7 @@ var gKeywords = {
 };
 
 var gImgs = [];
+var gSavedMemes = [];
 var gMeme;
 
 _createImgs();
@@ -64,8 +66,8 @@ function createMeme(id) {
 	return gMeme;
 }
 
-function deleteMeme(){
-	gMeme=null;
+function deleteMeme() {
+	gMeme = null;
 }
 
 function getMeme() {
@@ -108,10 +110,23 @@ function setLineColor(color) {
 	getSelectedLine().color = color;
 }
 
-function isLineTextBold(){
+function isLineTextBold() {
 	return getSelectedLine().isBold ? 'bold' : '';
 }
 
-function toggleBoldLine(){
+function toggleBoldLine() {
 	getSelectedLine().isBold = !getSelectedLine().isBold;
+}
+
+function toggleUpperCaseLine(isUpper) {
+	var txt = getLineText();
+	txt = isUpper ? txt.toUpperCase() : txt.toLowerCase();
+	setLineTxt(txt);
+}
+
+function saveMemeToStorage(memeContent) {
+	gSavedMemes.push({ meme: gMeme, url: memeContent });
+	saveToStorage(KEY, gSavedMemes);
+	console.log(`${KEY} has updated and saved to storage.`);
+	gMeme = null;
 }

@@ -42,7 +42,7 @@ a {
 /* LAYOUT */
 .main-layout {
 	margin: 0px 25px;
-	/* max-width: 600px; */
+	max-width: 600px;
 }
 
 /* HEADER */
@@ -71,6 +71,16 @@ header main {
 }
 .main-content nav {
 	background-color: whitesmoke;
+}
+.btn.continue-edit{
+	position: fixed;
+	top:10vh;
+	left:5vh;
+	width: 200px;
+}
+.btn.continue-edit::before{
+	content: '\f044'
+
 }
 .keywords {
 	max-width: 60%;
@@ -116,14 +126,15 @@ canvas {
 /* CONTROL-BOX */
 
 .control-box {
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(5, 50px);
-	grid-template-areas:
-		'text text text text text'
-		'up down move add delete'
-		'increase decrease bold fonts fonts'
-		'left center right pallette .'
-		'stickers stickers stickers stickers stickers ';
+	display: grid;
+	grid-template-columns: repeat(5, 50px);
+	grid-template-rows:auto;
+	grid-template-areas:	"text text text add-text switch-lines"
+							"increase decrease bold text-case color"
+							"left center right font-type font-type"
+							"stickers stickers stickers stickers stickers"
+							"go-back delete save download share";
+	gap:10px;
 }
 
 .control-box > * {
@@ -134,8 +145,8 @@ canvas {
 }
 
 .meme-txt {
+	grid-area:text ;
 	height: 35px;
-	grid-area: text;
 	background-color: white;
 	border-bottom: 1px solid gray;
 	border-radius: 0%;
@@ -144,22 +155,19 @@ canvas {
 .font-type {
 	width: 100%;
 	height: 35px;
-	grid-area: fonts;
+	grid-area: font-type;
 }
 
-.stickers-area {
-	background-color: darkorchid;
-	height: 40px;
-	width: 100%;
-	grid-area: stickers;
-}
 /* BUTTONS */
 
 .btn {
 	font-family: Symbols;
 	cursor: pointer;
-	height: 35px;
-	width: 35px;
+	width:40px;
+	height:40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .btn.active {
 	color: tomato;
@@ -168,21 +176,21 @@ canvas {
 .btn:hover {
 	color: tomato;
 }
-
-.btn.switch.switch-down::before {
-	content: '\f309';
-}
-.btn.switch.switch-up::before {
-	content: '\f30c';
-}
-.btn.switch::before {
-	content: '\f309\f30c';
+.btn.add-text{
+	grid-area: add-text;
 }
 .btn.add-text::before {
 	content: '\f067';
 }
-.btn.delete::before {
-	content: '\f2ed';
+.btn.switch-lines{
+	grid-area: switch-lines;
+}
+.btn.switch-lines::before {
+	content: '\f309\f30c';
+}
+
+.btn.font-increase{
+	grid-area: increase;
 }
 .btn.font-increase::before {
 	content: '\f031';
@@ -191,6 +199,9 @@ canvas {
 	font-size: 4px;
 	content: '\f067';
 }
+.btn.font-decrease{
+	grid-area: decrease;
+}
 .btn.font-decrease::before {
 	content: '\f031';
 }
@@ -198,21 +209,143 @@ canvas {
 	font-size: 4px;
 	content: '\f068';
 }
+.btn.font-bold{
+	grid-area: bold;
+}
 .btn.font-bold::before {
 	content: '\f032';
+}
+.btn.text-case{
+	font-family: sans-serif;
+	font-weight: bolder;
+	grid-area: text-case;
+}
+.btn.align-left{
+	grid-area: left;
 }
 .btn.align-left::before {
 	content: '\f036';
 }
+.btn.align-center{
+	grid-area: center;
+}
 .btn.align-center::before {
 	content: '\f037';
+}
+
+.btn.align-right{
+	grid-area: right;
 }
 .btn.align-right::before {
 	content: '\f038';
 }
-.btn.color-change::before {
-	content: '\f53f\f1fc';
+.btn.color-change{
+	grid-area: color;
 }
+/* .btn.color-change::before {
+	content: '\f53f\f1fc';
+} */
+
+
+.stickers-area {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	grid-template-rows: auto;
+	background-color: whitesmoke;
+	height: 100px;
+	padding:10px;
+	width: 100%;
+	grid-area: stickers;
+	overflow: scroll;
+}
+.stickers-area >*{
+	height: 60px;
+	width: 60px;
+	margin: 10px;
+}
+
+.btn.go-back{
+	background-color: #ff7f00;
+	color: whitesmoke;
+	grid-area: go-back;
+}
+.btn.go-back:hover{
+	background-color: whitesmoke;
+	color: #ff7f00;
+}
+.btn.go-back::before{
+	content: '\f060'
+}
+.btn.delete{
+	background-color: darkred;
+	color: whitesmoke;
+	grid-area: delete;
+}
+.btn.delete:hover{
+	background-color:whitesmoke ;
+	color:darkred ;
+}
+.btn.delete::before {
+	content: '\f2ed';
+}
+.btn.download{
+	color:whitesmoke ;
+	background-color: rgb(255, 151, 169);
+	grid-area: download;
+}
+.btn.download:hover{
+	color: rgb(255, 151, 169);
+	background-color: whitesmoke;
+}
+.btn.download::before{
+	content: '\f019';
+	font-size: 0.8rem;
+}
+.btn.share{
+	color:whitesmoke ;
+	background-color: rgb(38, 175, 38);
+	grid-area: share;
+}
+.btn.share:hover{
+	color:  rgb(38, 175, 38);
+	background-color:whitesmoke;
+}
+.btn.share::before{
+	content: '\f1e0';
+}
+.btn.save{
+	color:whitesmoke ;
+	background-color: skyblue;
+	grid-area: save;
+}
+
+.btn.save:hover{
+	color:skyblue ;
+	background-color: whitesmoke;
+}
+.btn.save::before{
+	content: '\f0c7';
+}
+
+
+
+
+.user-meme-area {
+	margin: 10px;
+	grid-template-columns: repeat(3, 150px);
+	grid-template-rows: repeat(3, 150px);
+	gap: 20px;
+	justify-content: center;
+}
+
+.user-meme-area > * {
+	cursor: pointer;
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+}
+
+
 
 /* FOOTER  */
 footer {

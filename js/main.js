@@ -38,3 +38,18 @@ function renderImgs() {
 
 	document.querySelector('.main-grid').innerHTML = strImgsHtmls.join('');
 }
+
+function showMemes(){
+	hideElement('main-grid')
+	showElement('user-meme-area')
+	renderUserMemes();
+}
+
+function renderUserMemes(){
+	var memes = loadFromStorage(KEY);
+	const strMemesHtmls = memes.map((meme) => {
+		return `<img class="meme" src="${JSON.parse(meme.url)}"/>`;
+	});
+
+	document.querySelector('.user-meme-area').innerHTML = strMemesHtmls.join('');
+}

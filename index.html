@@ -10,17 +10,11 @@
 	<body onload="onInit()">
 		<header>
 			<main class="main-layout flex space-between align-center">
-				<img
-					class="logo"
-					src="img/logo.png"
-					alt="Brand"
-					href="#"
-					title="Meme Generator"
-				/>
+				<img class="logo" src="img/logo.png" alt="MemeGen" href="#" title="Meme Generator" />
 				<nav>
 					<ul class="main-nav flex clean-list">
 						<li><a href="#">Gallery</a></li>
-						<li><a href="#">Memes</a></li>
+						<li><a href="#" onclick="showMemes()">Memes</a></li>
 						<li><a href="#">About</a></li>
 					</ul>
 				</nav>
@@ -35,73 +29,23 @@
 				</section>
 				<section class="keywords"></section>
 			</nav>
-            <button class="btn go-back hide" onclick="navigateGallery()">Go Back to Gallery</button>
-			<button class="btn continue-edit hide" onclick="onImgClick()"> Continue edit</button>
-			</nav>
+			<button class="btn navigate continue-edit hide" onclick="onImgClick()"> Continue edit</button>
 			<section class="main-grid grid main-layout"></section>
 			<article class="edit-meme-modal hide">
-				<main class="edit-area main-layout flex align-center">
-					<canvas
-						id="canvas"
-						onclick="canvasClicked(event)"
-						width="400px"
-						height="400px"
-					></canvas>
-					<section class="control-box grid">
-						<input
-							type="text"
-							class="meme-txt"
-							id=""
-							placeholder="Text goes here..."
-							value=""
-						/>
-						<button class="btn switch switch-up" title="Move line up"></button>
-						<button
-							class="btn switch switch-down"
-							title="Move line down"
-						></button>
-						<button class="btn switch"></button>
+				<main class="edit-area main-layout flex direction-column align-center">
+					<canvas id="canvas" onclick="canvasClicked(event)" width="400px" height="400px"></canvas>
+					<section class="control-box">
+						<input class="meme-txt" type="text" placeholder="Text goes here..." value=""/>
 						<button class="btn add-text" title="Add another row"></button>
-						<button
-							class="btn delete"
-							onclick="onDeleteMeme()"
-							title="Delete meme"
-						></button>
-						<button
-							class="btn font font-increase"
-							onclick="onFontSizeChange('increase')"
-							title="Increase font size"
-						></button>
-						<button
-							class="btn font font-decrease"
-							onclick="onFontSizeChange('decrease')"
-							title="Decrease font size"
-						></button>
-						<button
-							class="btn font font-bold"
-							onclick="onFontWeightChange()"
-							title="Bold"
-						></button>
-						<button
-							class="btn align align-left"
-							onclick="onAlignChange('left')"
-							title="Align text left"
-						></button>
-						<button
-							class="btn align align-center"
-							onclick="onAlignChange('center')"
-							title="Align text center"
-						></button>
-						<button
-							class="btn align align-right"
-							onclick="onAlignChange('right')"
-							title="Align text right"
-						></button>
-						<select
-							class="font-type"
-							onchange="onFontChange(this.value)"
-							title="Choose font"
-						>
+						<button class="btn switch-lines" title="switch focus lines"></button>
+						<button class="btn font font-increase" onclick="onFontSizeChange('increase')" title="Increase font size" ></button>
+						<button class="btn font font-decrease" onclick="onFontSizeChange('decrease')" title="Decrease font size" ></button>
+						<button class="btn font font-bold" onclick="onFontWeightChange()" title="Bold" ></button>
+						<button class="btn text-case" onclick="onCaseChange()" title="Change to upper/lower case" >U</button>
+						<button class="btn align align-left" onclick="onAlignChange('left')" title="Align text left" ></button>
+						<button class="btn align align-center" onclick="onAlignChange('center')" title="Align text center" ></button>
+						<button class="btn align align-right" onclick="onAlignChange('right')" title="Align text right" ></button>
+						<select class="font-type" onchange="onFontChange(this.value)" title="Choose font" >
 							<option disabled>Choose font...</option>
 							<option value="impact" title="recommended">Impact</option>
 							<option value="arial">Arial</option>
@@ -111,18 +55,17 @@
 							<option value="times new roman">Times New Roman</option>
 							<option value="verdana">Verdana</option>
 						</select>
-						<button class="btn color-change">
-							<input
-								type="color"
-								value="#ffffff"
-								onchange="onSetColor(this.value)"
-								title="Change text color"
-							/>
-						</button>
+						<input class="btn color-change" type="color" value="#FFFFFF" onchange="onSetColor(this.value)" title="Change line color" />
+						<button class="btn navigate go-back hide" onclick="navigateGallery()" title="Go Back to Gallery"></button>
+						<button class="btn delete" onclick="onDeleteMeme()" title="Delete changes" ></button>
+						<button class="btn save" title="Save" onclick="onSaveMeme()"></button>
+						<a class="btn download" onclick="onDownloadMeme(this)" download="my-meme.jpg" title="Download meme"></a>
+						<button class="btn share" title="share meme"></button>
 						<div class="stickers-area"></div>
 					</section>
 				</main>
 			</article>
+			<section class="user-meme-area grid hide"></section>
 		</main>
 
 		<footer>
@@ -139,6 +82,7 @@
 		</footer>
 
 		<!-- SCRIPTS  -->
+		<script src="js/services/storage-services.js"></script>
 		<script src="js/services/utils-service.js"></script>
 		<script src="js/services/meme-service.js"></script>
 		<script src="js/meme-controller.js"></script>
