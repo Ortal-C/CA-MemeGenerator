@@ -13,17 +13,27 @@ function onImgClick(id) {
 	showOnlyEditor();
 	hideElement('continue-edit');
 	var imgUrl = getImgById(id).url;
-	if (!gImg || gImg.src !== imgUrl) {
+	if (!gImg || gImg.url !== imgUrl) {
+		if (gImg) console.log('Discarding last draft.');
 		createMeme(id);
 		initCanvas(imgUrl);
+		clearText();
+		renderMeme();
+		renderStickers();
+		console.log(`Meme template #${id} is ready to edit.`);
+		return;
 	}
-	renderMeme();
-	renderStickers();
-	console.log(`Meme template #${id} is ready to edit.`);
+	onContinueEdit();
+}
+function onContinueEdit(){
+	console.log('Continue editing img.');
+	showOnlyEditor();
+	dynamicText();
 }
 
 function initCanvas(imgUrl) {
 	gImg = new Image();
+	gImg.url = imgUrl;
 	gImg.src = imgUrl;
 	if (gImg.width > 300 || gImg.height > 300){
 		gImg.width *=0.6;
@@ -43,7 +53,7 @@ function renderStickers(){
 
 function dynamicText() {
 	clearCanvas();
-	var txt = this.value;
+	var txt = document.querySelector('.meme-txt').value;
 	setLineTxt(txt);
 	drawImg();
 	drawText();
@@ -74,6 +84,11 @@ function drawText(txt = '') {
 function clearCanvas() {
 	gCanvasContext.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
+
+function clearText(){
+	document.querySelector('.meme-txt').value="";
+}
+
 function renderMeme() {
 	clearCanvas();
 	drawImg();
@@ -85,7 +100,7 @@ function onDeleteMeme() {
 }
 function quitEditMeme() {
 	gImg = null;
-	document.querySelector('.meme-txt').value="";
+	clearText();
 	clearCanvas();
 	deleteMeme();
 	navigateGallery();

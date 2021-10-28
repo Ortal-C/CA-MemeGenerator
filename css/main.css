@@ -26,36 +26,43 @@
 /* BASIC */
 body {
 	font-family: Montserrat-Regular, sans-serif, Symbols;
-	font-size: 0.7rem;
+	font-size: 1rem;
 }
 
 header {
 	background-color: #ff7f00;
+	width: 100%;
+	height: 5vh;
 	display: flex;
 	justify-content: center;
 }
-nav{
-	width:100%;
-}
 a {
-	font-family: Montserrat-Regular, sans-serif;
+	font-family: Montserrat-Regular, sans-serif, Symbols;
 	text-decoration: none;
 }
 
 /* LAYOUT */
 .main-layout {
 	margin: 0px 25px;
-	max-width: 600px;
+	width: 600px;
 }
 
 /* HEADER */
-header main {
-	align-items: center;
-}
 
 .logo {
 	width: 133px;
 	height: 22px;
+	align-self: center;
+}
+
+.btn-menu{
+	display: none;
+	font-size: 1.5rem;
+	color: white;
+	font-weight: bold;
+	border: none;
+	background-color: #ff7f00;
+	cursor: pointer;
 }
 
 .main-nav a {
@@ -75,6 +82,7 @@ header main {
 
 .main-content nav {
 	background-color: whitesmoke;
+	flex-wrap: wrap;
 }
 .search-keys{
 	width: 230px;
@@ -188,4 +196,72 @@ footer main {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
+}
+
+
+.main-screen {
+    position: fixed;
+    top: 5vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .25);
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .6s;
+}
+
+body.menu-open .main-screen {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+
+/* SMALL ONLY */
+
+@media(min-width:350px) and (max-width:550px) {
+    .main-nav {
+        position: absolute;
+        width: 100vw;
+        top: 5vh;
+        right: 0;
+        flex-direction: column;
+        background-color: #ff7f00;
+        transform: translateY();
+		display: none;
+    }
+	.btn-menu{
+		display: block;
+	}
+    body.menu-open .main-nav {
+		display: block;
+        box-shadow: 2px 2px -20px rgba(0, 0, 0, .25);
+    }
+	
+    .main-nav a {
+        display: block;
+		width:100%;
+        padding: 10px;
+        border-bottom: 1px solid whitesmoke;
+        transition: background .3s;
+    }
+    .main-nav a:hover {
+		font-weight: bold;
+		color: #ff7f00;
+        background: whitesmoke;
+    }
+.main-layout{
+		margin: 0;
+		width:100%;
+	}
+	.main-grid {
+		margin: 10px;
+		grid-template-columns: repeat(3, 150px);
+		grid-template-rows: repeat(3, 150px);
+		gap: 20px;
+		justify-content: center;
+	}
+	
+
 }

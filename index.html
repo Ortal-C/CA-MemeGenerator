@@ -9,16 +9,16 @@
 		<link rel="stylesheet" href="css/main.css" />
 	</head>
 	<body onload="onInit()">
+		<div class="main-screen" onclick="toggleMenu()"></div>
 		<header>
-			<main class="flex space-between align-center">
+			<main class="main-layout main-header flex space-between align-center">
 				<img class="logo" src="img/logo.png" alt="MemeGen" href="#" title="Meme Generator" />
-				<nav>
-					<ul class="main-nav flex clean-list">
-						<li><a href="#" onclick="navigateGallery()">Gallery</a></li>
-						<li><a href="#" onclick="navigateUserMemes()">Memes</a></li>
-						<li><a href="#">About</a></li>
-					</ul>
-				</nav>
+				<button class="btn-menu" title="Menu" onclick="toggleMenu()">☰</button>
+				<ul class="main-nav flex clean-list">
+					<li><a href="#" onclick="navigateGallery()">Gallery</a></li>
+					<li><a href="#" onclick="navigateUserMemes()">Memes</a></li>
+					<li><a href="#" onclick="navigateAbout()">About</a></li>
+				</ul>	
 			</main>
 		</header>
 		<main class="main-layout main-content flex direction-column center-content">
@@ -30,7 +30,7 @@
 				</section>
 				<section class="keywords"></section>
 			</nav>
-			<button class="main-layout continue-edit hide" onclick="onImgClick()"> Continue edit</button>
+			<button class="main-layout continue-edit hide" onclick="onContinueEdit()"> Continue edit</button>
 			<section class="main-layout main-grid grid"></section>
 			<article class="edit-meme-modal hide">
 				<main class="main-layout edit-area flex direction-column align-center">

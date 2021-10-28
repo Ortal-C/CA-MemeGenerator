@@ -15,6 +15,14 @@ function onInit() {
     console.log('App is ready to use.');
 }
 
+
+function toggleMenu() {
+	document.body.classList.toggle('menu-open');
+	document.body.classList.contains('menu-open')
+	? document.querySelector('.btn-menu').innerText = 'X'
+	: document.querySelector('.btn-menu').innerText = '☰';
+}
+
 function renderKeywords() {
 	var keywords = Object.keys(getKeywords());
 	keywords.sort((k1,k2)=> sortByText(k1, k2));
@@ -50,27 +58,32 @@ function renderUserMemes(){
 
 function navigateGallery() {
 	showOnlyGallery();
-	if (gImg) showElement('continue-edit');
 }
 
 function navigateUserMemes(){
 	showOnlyUserMemes();
-	if (gImg) showElement('continue-edit');
 	renderUserMemes();
+}
+
+function navigateAbout(){
+	console.log('in about');
 }
 
 function showOnlyGallery(){
 	hideElement('user-meme-area');
 	hideElement('edit-meme-modal');
 	showElement('main-grid');
+	if (gImg) showElement('continue-edit');
 }
 function showOnlyUserMemes(){
 	hideElement('main-grid');
 	hideElement('edit-meme-modal');
 	showElement('user-meme-area');
+	if (gImg) showElement('continue-edit');
 }
 function showOnlyEditor(){
 	hideElement('main-grid');
+	hideElement('continue-edit')
 	hideElement('user-meme-area');
 	showElement('edit-meme-modal');
 }
