@@ -5,34 +5,35 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Meme Generator</title>
+		<link rel="stylesheet" href="css/control-box.css" />
 		<link rel="stylesheet" href="css/main.css" />
 	</head>
 	<body onload="onInit()">
 		<header>
-			<main class="main-layout flex space-between align-center">
+			<main class="flex space-between align-center">
 				<img class="logo" src="img/logo.png" alt="MemeGen" href="#" title="Meme Generator" />
 				<nav>
 					<ul class="main-nav flex clean-list">
-						<li><a href="#">Gallery</a></li>
-						<li><a href="#" onclick="showMemes()">Memes</a></li>
+						<li><a href="#" onclick="navigateGallery()">Gallery</a></li>
+						<li><a href="#" onclick="navigateUserMemes()">Memes</a></li>
 						<li><a href="#">About</a></li>
 					</ul>
 				</nav>
 			</main>
 		</header>
-		<main class="main-content flex direction-column center-content">
-			<nav class="main-layout flex space-between align-center">
+		<main class="main-layout main-content flex direction-column center-content">
+			<nav class="flex space-between align-center">
 				<section class="search-keys">
-					<input type="text" list="keywords-list" />
+					<input class="key-input" type="text" list="keywords-list" />
 					<datalist id="keywords-list"></datalist>
-					<input type="submit" value="Serach" />
+					<button class="btn search-keys"></button>
 				</section>
 				<section class="keywords"></section>
 			</nav>
-			<button class="btn navigate continue-edit hide" onclick="onImgClick()"> Continue edit</button>
-			<section class="main-grid grid main-layout"></section>
+			<button class="main-layout continue-edit hide" onclick="onImgClick()"> Continue edit</button>
+			<section class="main-layout main-grid grid"></section>
 			<article class="edit-meme-modal hide">
-				<main class="edit-area main-layout flex direction-column align-center">
+				<main class="main-layout edit-area flex direction-column align-center">
 					<canvas id="canvas" onclick="canvasClicked(event)" width="400px" height="400px"></canvas>
 					<section class="control-box">
 						<input class="meme-txt" type="text" placeholder="Text goes here..." value=""/>
@@ -56,7 +57,7 @@
 							<option value="verdana">Verdana</option>
 						</select>
 						<input class="btn color-change" type="color" value="#FFFFFF" onchange="onSetColor(this.value)" title="Change line color" />
-						<button class="btn navigate go-back hide" onclick="navigateGallery()" title="Go Back to Gallery"></button>
+						<button class="btn navigate go-back" onclick="navigateGallery()" title="Go Back to Gallery"></button>
 						<button class="btn delete" onclick="onDeleteMeme()" title="Delete changes" ></button>
 						<button class="btn save" title="Save" onclick="onSaveMeme()"></button>
 						<a class="btn download" onclick="onDownloadMeme(this)" download="my-meme.jpg" title="Download meme"></a>
@@ -70,13 +71,7 @@
 
 		<footer>
 			<main class="main-layout flex align-center">
-				<img
-					class="logo"
-					src="img/logo.png"
-					alt="Brand"
-					href="#"
-					title="Meme Generator"
-				/>
+				<img class="logo" src="img/logo.png" alt="MemeGen" href="#" title="Meme Generator" />
 				<h3>All rights reserved</h3>
 			</main>
 		</footer>

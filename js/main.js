@@ -39,12 +39,6 @@ function renderImgs() {
 	document.querySelector('.main-grid').innerHTML = strImgsHtmls.join('');
 }
 
-function showMemes(){
-	hideElement('main-grid')
-	showElement('user-meme-area')
-	renderUserMemes();
-}
-
 function renderUserMemes(){
 	var memes = loadFromStorage(KEY);
 	const strMemesHtmls = memes.map((meme) => {
@@ -52,4 +46,31 @@ function renderUserMemes(){
 	});
 
 	document.querySelector('.user-meme-area').innerHTML = strMemesHtmls.join('');
+}
+
+function navigateGallery() {
+	showOnlyGallery();
+	if (gImg) showElement('continue-edit');
+}
+
+function navigateUserMemes(){
+	showOnlyUserMemes();
+	if (gImg) showElement('continue-edit');
+	renderUserMemes();
+}
+
+function showOnlyGallery(){
+	hideElement('user-meme-area');
+	hideElement('edit-meme-modal');
+	showElement('main-grid');
+}
+function showOnlyUserMemes(){
+	hideElement('main-grid');
+	hideElement('edit-meme-modal');
+	showElement('user-meme-area');
+}
+function showOnlyEditor(){
+	hideElement('main-grid');
+	hideElement('user-meme-area');
+	showElement('edit-meme-modal');
 }

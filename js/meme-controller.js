@@ -1,6 +1,5 @@
 'use strict';
 const NUM_OF_STICKERS = 23;
-const MEME_HEIGHT = gElCanvas.height;
 
 function addEventListeners() {
 	document.querySelector('.meme-txt').addEventListener('keyup', dynamicText);
@@ -10,20 +9,9 @@ function canvasClicked(ev) {
 	console.log(ev);
 }
 
-function hideElement(selector) {
-	document.querySelector(`.${selector}`).classList.add('hide');
-}
-
-function showElement(selector) {
-	document.querySelector(`.${selector}`).classList.remove('hide');
-}
-
 function onImgClick(id) {
-	showElement('edit-meme-modal');
-	showElement('btn.go-back');
+	showOnlyEditor();
 	hideElement('continue-edit');
-	hideElement('main-grid');
-
 	var imgUrl = getImgById(id).url;
 	if (!gImg || gImg.src !== imgUrl) {
 		createMeme(id);
@@ -97,15 +85,10 @@ function onDeleteMeme() {
 }
 function quitEditMeme() {
 	gImg = null;
+	document.querySelector('.meme-txt').value="";
 	clearCanvas();
 	deleteMeme();
 	navigateGallery();
-}
-function navigateGallery() {
-	hideElement('edit-meme-modal');
-	hideElement('btn.go-back');
-	showElement('main-grid');
-	if (gImg) showElement('continue-edit');
 }
 
 function onFontSizeChange(operation) {
