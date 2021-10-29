@@ -6,32 +6,22 @@
 
 //CONST
 const KEY = 'userMemesDB';
+const DEFAULT_TEXT = 'Text goes here...';
+const DEFAULT_SIZE = 30; //in pixels..
+const DEFAULT_ALIGN = 'center';
+const DEFAULT_COLOR = 'white';
 
 // GLOBAL VARIABLES
 var gSavedMemes = [];
 var gMeme;
 
-
 function createMeme(id) {
 	gMeme = {
 		selectedImgId: id,
 		selectedLineIdx: 0,
-		lines: [
-			// TODO: MAKE IT GENERAL
-			{
-				txt: 'Text goes here...',
-				size: 30,
-				isBold: false,
-				align: 'center',
-				color: 'white',
-				isDrag: false,
-				pos:{
-					start: {x:0, y:0},
-					end: {x:0, y:0},
-				},
-			},
-		],
+		lines: [],
 	};
+	addNewLine();
 	return gMeme;
 }
 
@@ -48,43 +38,58 @@ function getMemeImgId() {
 }
 
 function getMemeLineIdx() {
-	return gMeme.selectedLineIdx
+	return gMeme.selectedLineIdx;
 }
 
 function setMemeLineIdx(idx) {
 	gMeme.selectedLineIdx = idx;
 }
 
-function getMemeLines(){
+function getMemeLines() {
 	return gMeme.lines;
 }
 
 function getSelectedLine() {
-	return gMeme.lines[gMeme.selectedLineIdx];
+	return getLineByIdx(gMeme.selectedLineIdx);
 }
 
-function getNumOfLines(){
-	return gMeme.lines.length
+function getNumOfLines() {
+	return gMeme.lines.length;
 }
 
-function switchFocus(){
-	var currLine = getMemeLineIdx();
-	setMemeLineIdx((getNumOfLines()-1 === currLine) ? 0 : currLine+1);
+function switchFocus() {
+	var idx = gMeme.selectedLineIdx;
+	setMemeLineIdx(getNumOfLines() - 1 === idx ? 0 : idx + 1);
 }
 
 function addNewLine() {
-	gMeme.lines.push({
-		txt: 'Text goes here...',
-		size: 30,
+	var offsetX = gElCanvas.width / 2
+	var offsetY;
+	switch (getNumOfLines()) {
+		case 0:
+			offsetY = DEFAULT_SIZE;
+			break;
+		case 1:
+			offsetY = gElCanvas.height - DEFAULT_SIZE;
+			break;
+		default:
+			offsetY = gElCanvas.height / 2;
+			break;
+	}
+	var newLine = {
+		text: DEFAULT_TEXT,
+		size: DEFAULT_SIZE,
+		align: DEFAULT_ALIGN,
+		color: DEFAULT_COLOR,
 		isBold: false,
-		align: 'center',
-		color: 'white',
 		isDrag: false,
-		pos:{
-			start: {x:0, y:0},
-			end: {x:0, y:0},
-		},
-	});
+		startPos: { x: offsetX, y: offsetY},
+	};
+	gMeme.lines.push(newLine);
+	return newLine;
+}
+function deleteSelectedLine() {
+	gMeme.lines = gMeme.lines.splice(gMeme.selectedLineIdx, 1);
 }
 
 function saveMemeToStorage(memeContent) {
@@ -98,11 +103,15 @@ function saveMemeToStorage(memeContent) {
 //**************************** MEME SELECTED LINE SERVICES ******************************/
 //***************************************************************************************/
 
+function getLineByIdx(idx) {
+	return gMeme.lines[idx];
+}
+
 function getLineText() {
-	return getSelectedLine().txt;
+	return getSelectedLine().text;
 }
 function setLineText(text) {
-	getSelectedLine().txt = text;
+	getSelectedLine().text = text;
 }
 
 function getLineSize() {
@@ -129,7 +138,6 @@ function setLineColor(color) {
 function isLineTextBold() {
 	return getSelectedLine().isBold ? 'bold' : '';
 }
-
 function toggleBoldLine() {
 	getSelectedLine().isBold = !getSelectedLine().isBold;
 }
@@ -140,21 +148,31 @@ function toggleUpperCaseLine(isUpper) {
 	setLineText(txt);
 }
 
-function getLinePositions() {
-	return getSelectedLine().pos;
-}
-
-function getLineStartPosition() {
-	return getLinePositions().start;
+function getLineStartPos() {
+	return getSelectedLine().startPos;
 }
 
 function getLineEndPosition() {
-	return getLinePositions().end;
+	var pos = getLineStartPos();
+	var lineSize = getLineSize();
+	return { x: gElCanvas.width, y: pos.y + lineSize };
 }
 
-function setLineStartPosistion(startPos) {
-	var currLinePositions = getLinePositions();
-	var lineSize = getLineSize();
-	currLinePositions.start = startPos;
-	currLinePositions.end.y = startPos.y + lineSize;
+function setLinePosistion(pos) {
+	getSelectedLine().pos = pos;
+}
+
+function setLineDrag(isDrag) {
+	getSelectedLine().isDrag = isDrag;
+}
+
+function isSelectedLineDrag() {
+	return getSelectedLine().isDrag;
+}
+
+function moveSelectedLine(dx, dy) {
+	var pos = getLineStartPos();
+	pos.x += dx;
+	pos.y += dy;
+	setLinePosistion(pos);
 }

@@ -20,7 +20,7 @@
 	color: #333333;
 }
 
-.meme-txt {
+.meme-text {
 	grid-area:text ;
 	height: 35px;
 	background-color: white;

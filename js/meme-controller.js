@@ -10,7 +10,7 @@ const NUM_OF_STICKERS = 23;
 //***************************************************************************************/
 
 function initMeme(){
-	resetCanvas();
+	initCanvas();
 	addEventListeners()
 }
 
@@ -21,7 +21,7 @@ function onContinueEdit(){
 
 function discardChanges(){
 	gImg = null;
-	clearText();
+	clearInputText();
 	clearCanvas();
 	deleteMeme();
 }
@@ -39,56 +39,56 @@ function renderStickers(){
 	document.querySelector('.stickers-area').innerHTML = strHtml;
 }
 
-function clearText(){
-	document.querySelector('.meme-txt').value="";
+function clearInputText(){
+	document.querySelector('.meme-text').value="";
 }
 
-function renderMeme() {
-	clearCanvas();
-	drawImg();
-	drawText(getLineText());
-}
 
 function onSwitchFocus(){
 	switchFocus();
+	document.querySelector('.meme-text').value= getLineText();
+	console.log(`focus on line #${getMemeLineIdx()+1}`);
 }
 
 function onAddLine(){
 	addNewLine();
+	switchFocus();
+	renderCanvas();
+	console.log(`line added successfully.`);
 }
 
 function onFontSizeChange(operation) {
 	var diff = (operation === 'increase' ? 1 : -1) * 2;
 	setLineSize(diff);
-	renderMeme();
+	renderCanvas();
 }
 
 function onSetColor(color) {
 	setLineColor(color);
-	renderMeme();
+	renderCanvas();
 }
 
 function onFontWeightChange() {
 	document.querySelector('.btn.font-bold').classList.toggle('active');
 	toggleBoldLine();
-	renderMeme();
+	renderCanvas();
 }
 
 function onCaseChange(){
 	document.querySelector('.btn.text-case').classList.toggle('active');
 	toggleUpperCaseLine(document.querySelector('.btn.text-case').classList.contains('active'));
-	renderMeme();
+	renderCanvas();
 }
 
 function onAlignChange(align) {
 	document.querySelector(`.align-${getLineAlign()}`).classList.remove('active');
 	document.querySelector(`.align-${align}`).classList.add('active');
 	setLineAlign(align);
-	renderMeme();
+	renderCanvas();
 }
 
-function onFontChange(value) {
-	renderMeme();
+function onFontChange() {
+	renderCanvas();
 }
 
 

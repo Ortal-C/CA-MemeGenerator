@@ -24,9 +24,9 @@ function onImgClick(id) {
             discardChanges()
         } 
 		createMeme(id);
-		initCanvas(imgUrl);
-		clearText();
-		renderMeme();
+		resetCanvas(imgUrl);``
+		clearInputText();
+		renderCanvas();
 		renderStickers();
 		console.log(`Meme template #${id} is ready to edit.`);
 		return;
