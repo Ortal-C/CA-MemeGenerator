@@ -4,7 +4,6 @@ function onInit() {
     console.log('Initializing ...');
 	initMeme();
 	initImgs();
-	addMouseListeners();
 	renderKeywords();
 	renderImgs();
     console.log('App is ready to use.');
@@ -19,24 +18,15 @@ function toggleMenu() {
 
 function renderKeywords() {
 	var keywords = Object.keys(getKeywords());
-	const strKeywordsHtmls = keywords.map(keyword=>{
-		return `<a class="keyword" href="#" title="${keyword}">${keyword}</a>`
-    }) 
 	keywords.sort((k1,k2)=> sortByText(k1, k2));
 	const strListOptionsdHtmls = keywords.map(keyword=>{
 		return `<option value="${keyword}">${keyword}</option>`
 	}) 
-	document.querySelector('.keywords').innerHTML = strKeywordsHtmls.join('');
-	document.querySelector('#keywords-list').innerHTML = strListOptionsdHtmls.join('');
-}
-
-function renderImgs() {
-	var images = getImgs();
-	const strImgsHtmls = images.map((img) => {
-        return `<img class="meme" data-imgId="${img.id}" src="${img.url}" alt="meme-#${img.id}" onclick="onImgClick(${img.id}, event)"/>`;
-	});
-
-	document.querySelector('.main-grid').innerHTML = strImgsHtmls.join('');
+	document.querySelector('#keywords-list').innerHTML = `<option value="All">All</option>` + strListOptionsdHtmls.join('');
+	// const strKeywordsHtmls = keywords.map(keyword=>{
+	// 	return `<a class="keyword" href="#" title="${keyword}">${keyword}</a>`
+	// }) 
+	// document.querySelector('.keywords').innerHTML = strKeywordsHtmls.join('');
 }
 
 function renderUserMemes(){
@@ -64,6 +54,7 @@ function navigateAbout(){
 function showOnlyGallery(){
 	hideElement('user-meme-area');
 	hideElement('edit-meme-modal');
+	showElement('search-keys');
 	showElement('main-grid');
 	if (gImg) showElement('continue-edit');
 }
@@ -71,7 +62,7 @@ function showOnlyGallery(){
 function showOnlyUserMemes(){
 	hideElement('main-grid');
 	hideElement('edit-meme-modal');
-	hideElement('keywords-nav')
+	hideElement('search-keys')
 	showElement('user-meme-area');
 	if (gImg) showElement('continue-edit');
 }
@@ -80,6 +71,6 @@ function showOnlyEditor(){
 	hideElement('main-grid');
 	hideElement('continue-edit')
 	hideElement('user-meme-area');
-	hideElement('keywords-nav')
+	hideElement('search-keys')
 	showElement('edit-meme-modal');
 }

@@ -57,6 +57,12 @@ function onAddLine(){
 	renderCanvas();
 	console.log(`line added successfully.`);
 }
+function onDeleteLine(){
+	deleteSelectedLine();
+	switchFocus();
+	renderCanvas();
+	console.log(`line deleted successfully.`);
+}
 
 function onFontSizeChange(operation) {
 	var diff = (operation === 'increase' ? 1 : -1) * 2;
@@ -91,7 +97,6 @@ function onAlignChange(align) {
 function onFontChange() {
 	renderCanvas();
 }
-
 
 function onDeleteMeme() {
 	if (confirm('Are you sure you want to discard changes?')) quitEditMeme();

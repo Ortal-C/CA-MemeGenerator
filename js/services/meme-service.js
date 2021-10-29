@@ -89,7 +89,9 @@ function addNewLine() {
 	return newLine;
 }
 function deleteSelectedLine() {
-	gMeme.lines = gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+	gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+	var linesCount = getNumOfLines()-1;
+	gMeme.selectedLineIdx = linesCount > 0 ? linesCount : 0;
 }
 
 function saveMemeToStorage(memeContent) {

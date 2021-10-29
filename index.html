@@ -22,24 +22,20 @@
 			</main>
 		</header>
 		<main class="main-layout main-content flex direction-column center-content">
-			<nav class="keywords-nav flex align-center">
-				<section class="search-keys">
-					<input class="key-input" type="text" list="keywords-list" onchange="onSearch()"/>
-					<datalist id="keywords-list"></datalist>
-					<button class="btn search-keys" onclick="onSearch()"></button>
-				</section>
-				<section class="keywords"></section>
+			<nav class="search-keys flex align-center">
+				<input class="key-input" type="text" list="keywords-list" onchange="onSearch()" placeholder="Type memes keyword for filter..."/>
+				<datalist id="keywords-list"></datalist>
 			</nav>
 			<button class="main-layout continue-edit hide" onclick="onContinueEdit()"> Continue edit</button>
 			<section class="main-layout main-grid grid"></section>
 			<article class="edit-meme-modal hide">
 				<main class="main-layout edit-area flex direction-column align-center">
-					<!-- onclick="onCanvasMouseEvents(event)" -->
 					<canvas id="canvas" width="200px" height="200px"></canvas>
 					<section class="control-box">
 						<input class="meme-text" type="text" placeholder="Text goes here..." value=""/>
-						<button class="btn add-text" title="Add another row" onclick="onAddLine()"></button>
 						<button class="btn switch-lines" title="switch focus lines" onclick="onSwitchFocus()"></button>
+						<button class="btn add-text" title="Add another row" onclick="onAddLine()"></button> 
+						<button class="btn delete-line" title="Delete line" onclick="onDeleteLine()"></button> 
 						<button class="btn font font-increase" onclick="onFontSizeChange('increase')" title="Increase font size" ></button>
 						<button class="btn font font-decrease" onclick="onFontSizeChange('decrease')" title="Decrease font size" ></button>
 						<button class="btn font font-bold" onclick="onFontWeightChange()" title="Bold" ></button>
@@ -80,7 +76,6 @@
 		<script src="js/services/storage-services.js"></script>
 		<script src="js/services/utils-service.js"></script>
 		<script src="js/services/imgs-service.js"></script>
-		<script src="js/services/canvas-service.js"></script>
 		<script src="js/services/meme-service.js"></script>
 		<script src="js/canvas-controller.js"></script>
 		<script src="js/meme-controller.js"></script>

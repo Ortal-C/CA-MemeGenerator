@@ -5,7 +5,8 @@
 	display: grid;
 	grid-template-columns: repeat(5, 50px);
 	grid-template-rows:auto;
-	grid-template-areas:	"text text text add-text switch-lines"
+	grid-template-areas:	"text text text text text"
+							"switch-lines switch-up switch-down add-text delete-line"
 							"increase decrease bold text-case color"
 							"left center right font-type font-type"
 							"stickers stickers stickers stickers stickers"
@@ -58,11 +59,31 @@
 .btn.add-text::before {
 	content: '\f067';
 }
+
+.btn.delete-line{
+	grid-area: delete-line;
+}
+.btn.delete-line::before{
+	content: '\f068';
+}
+
 .btn.switch-lines{
 	grid-area: switch-lines;
 }
 .btn.switch-lines::before {
 	content: '\f309\f30c';
+}
+.btn.switch-up{
+	grid-area: switch-up;
+}
+.btn.switch-up::before{
+	content: '\f30c';
+}
+.btn.switch-down{
+	grid-area: switch-down;
+}
+.btn.switch-down::before{
+	content: '\f309';
 }
 
 .btn.font-increase{
@@ -178,16 +199,17 @@
 	font-size: 0.8rem;
 }
 .btn.share{
+	font-family: Brands;
 	color:whitesmoke ;
-	background-color: rgb(38, 175, 38);
+	background-color: #4267B2;
 	grid-area: share;
 }
 .btn.share:hover{
-	color:  rgb(38, 175, 38);
+	color: #4267B2;
 	background-color:whitesmoke;
 }
 .btn.share::before{
-	content: '\f1e0';
+	content: '\f39e';
 }
 .btn.save{
 	color:whitesmoke ;
@@ -202,9 +224,6 @@
 .btn.save::before{
 	content: '\f0c7';
 }
-
-
-
 
 .user-meme-area {
 	margin: 10px;
