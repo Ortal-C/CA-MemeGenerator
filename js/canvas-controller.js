@@ -86,15 +86,24 @@ function drawImg() {
 
 function drawLines() {
 	getMemeLines().forEach((line) => {
-		const fontType = document.querySelector('.font-type').value;
-		gCanvasContext.font = `${line.isBold ? 'bold' : ''} ${line.size}px ${fontType}`;
-		gCanvasContext.fillStyle = line.color;
-		gCanvasContext.textAlign = line.align;
-		gCanvasContext.lineWidth = 2;
-		gCanvasContext.strokeStyle = 'black';
-		var pos = line.startPos;
-		gCanvasContext.fillText(line.text, pos.x, pos.y);
-		gCanvasContext.strokeText(line.text, pos.x, pos.y);
+		if (line.text){
+			const fontType = document.querySelector('.font-type').value;
+			gCanvasContext.font = `${line.isBold ? 'bold' : ''} ${line.size}px ${fontType}`;
+			gCanvasContext.fillStyle = line.color;
+			gCanvasContext.textAlign = line.align;
+			gCanvasContext.lineWidth = 2;
+			gCanvasContext.strokeStyle = 'black';
+			var pos = line.startPos;
+			gCanvasContext.fillText(line.text, pos.x, pos.y);
+			gCanvasContext.strokeText(line.text, pos.x, pos.y);
+		}
+		else{
+			var sticker=new Image();
+			sticker.src = `img/stickers/${line.stickerIdx}.png`
+			gCanvasContext.drawImage(sticker, 0, 0, sticker.width*0.1, sticker.height*0.1);
+			gCanvasContext.fillStyle = 'rgba(0, 0, 0, 0)';
+			gCanvasContext.fillRect(0, 0, sticker.widt*0.1, sticker.height*0.1);
+		}
 	});
 }
 
@@ -110,5 +119,4 @@ function renderCanvas() {
 	clearCanvas();
 	drawImg();
 	drawLines();
-	//drawText();
 }

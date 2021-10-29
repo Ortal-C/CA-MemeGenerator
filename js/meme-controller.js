@@ -4,7 +4,7 @@
 //***************************************************************************************/
 
 // CONST
-const NUM_OF_STICKERS = 23;
+const NUM_OF_STICKERS = 19;
 
 
 //***************************************************************************************/
@@ -35,7 +35,7 @@ function quitEditMeme() {
 function renderStickers(){
 	var strHtml=''
 	for (let i = 1; i <= NUM_OF_STICKERS; i++) {		
-		strHtml+= `<img class="sticker" src="img/stickers/${i}.png"/>`;
+		strHtml+= `<img class="sticker" src="img/stickers/${i}.png" onclick="onAddSticker(${i})"/>`;
 	}
 	document.querySelector('.stickers-area').innerHTML = strHtml;
 }
@@ -57,6 +57,13 @@ function onAddLine(){
 	renderCanvas();
 	console.log(`line added successfully.`);
 }
+
+function onAddSticker(stickerId){
+	addNewSticker(stickerId);
+	switchFocus();
+	renderCanvas();
+}
+
 function onDeleteLine(){
 	deleteSelectedLine();
 	switchFocus();

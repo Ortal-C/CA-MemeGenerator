@@ -62,7 +62,7 @@ function switchFocus() {
 	setMemeLineIdx(getNumOfLines() - 1 === idx ? 0 : idx + 1);
 }
 
-function addNewLine() {
+function addNewLine(txt) {
 	var offsetX = gElCanvas.width / 2
 	var offsetY;
 	switch (getNumOfLines()) {
@@ -77,11 +77,24 @@ function addNewLine() {
 			break;
 	}
 	var newLine = {
-		text: DEFAULT_TEXT,
+		text: (txt)? txt : DEFAULT_TEXT,
 		size: DEFAULT_SIZE,
 		align: DEFAULT_ALIGN,
 		color: DEFAULT_COLOR,
 		isBold: false,
+		isDrag: false,
+		startPos: { x: offsetX, y: offsetY},
+	};
+	gMeme.lines.push(newLine);
+	return newLine;
+}
+function addNewSticker(stickerIdx) {
+	var offsetX = gElCanvas.width / 2
+	var offsetY = gElCanvas.height / 2;
+	var newLine = {
+		text: null,
+		stickerIdx,
+		size: DEFAULT_SIZE,
 		isDrag: false,
 		startPos: { x: offsetX, y: offsetY},
 	};
