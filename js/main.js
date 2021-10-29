@@ -4,7 +4,7 @@ function onInit() {
     console.log('Initializing ...');
 	initMeme();
 	initImgs();
-	addEventListeners();
+	addMouseListeners();
 	renderKeywords();
 	renderImgs();
     console.log('App is ready to use.');

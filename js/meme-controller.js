@@ -11,7 +11,8 @@ const NUM_OF_STICKERS = 23;
 
 function initMeme(){
 	initCanvas();
-	addEventListeners()
+	addMouseListeners()
+	addTouchListeners();
 }
 
 function onContinueEdit(){

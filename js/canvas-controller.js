@@ -8,7 +8,8 @@ var gMousePos;
 function initCanvas() {
 	gElCanvas = document.getElementById('canvas');
 	gCanvasContext = gElCanvas.getContext('2d');
-	addEventListeners();
+	addMouseListeners();
+	addTouchListeners();
 }
 
 function resetCanvas(imgUrl) {
@@ -22,19 +23,20 @@ function resetCanvas(imgUrl) {
 	gElCanvas.height = gImg.height;
 }
 
-function addEventListeners() {
+function addMouseListeners() {
 	document.querySelector('.meme-text').addEventListener('keyup', dynamicText);
-	document
-		.querySelector('#canvas')
-		.addEventListener('mousedown', onMouseDownEvent);
-	document
-		.querySelector('#canvas')
-		.addEventListener('mousemove', onMouseMoveEvent);
-	document.querySelector('#canvas').addEventListener('mouseup', onMouseUpEvent);
-	// document.querySelector('#canvas').addEventListener('wheel', onMouseZoomEvent);
+	document.querySelector('#canvas').addEventListener('mousedown', onDownEvent);
+	document.querySelector('#canvas').addEventListener('mousemove', onMoveEvent);
+	document.querySelector('#canvas').addEventListener('mouseup', onUpEvent);
+}
+function addTouchListeners() {
+	document.querySelector('.meme-text').addEventListener('keyup', dynamicText);
+	document.querySelector('#canvas').addEventListener('touchstart', onDownEvent);
+	document.querySelector('#canvas').addEventListener('touchmove', onMoveEvent);
+	document.querySelector('#canvas').addEventListener('touchend', onUpEvent);
 }
 
-function onMouseDownEvent(ev) {
+function onDownEvent(ev) {
 	if (ev.type === 'mousedown') {
 		gMousePos = { x: ev.offsetX, y: ev.offsetY };
 		if (isPressOnElement(getLineStartPos())) {
@@ -45,7 +47,7 @@ function onMouseDownEvent(ev) {
 	}
 }
 
-function onMouseMoveEvent(ev) {
+function onMoveEvent(ev) {
 	if (ev.type === 'mousemove' && isSelectedLineDrag()) {
 		gMousePos = { x: ev.offsetX, y: ev.offsetY };
 		const currPos = getLineStartPos();
@@ -56,7 +58,7 @@ function onMouseMoveEvent(ev) {
 	}
 }
 
-function onMouseUpEvent(ev) {
+function onUpEvent(ev) {
 	if (ev.type === 'mouseup' && isSelectedLineDrag()) {
 		setLineDrag(false);
 		document.body.style.cursor = 'auto';
