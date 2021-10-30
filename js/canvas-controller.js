@@ -12,6 +12,16 @@ function initCanvas() {
 	addTouchListeners();
 }
 
+function renderCanvas() {
+	clearCanvas();
+	drawImg();
+	drawLines();
+}
+
+// *************************************************************************************** //
+// ******************************* CANVAS EVENTS HANDLER ********************************* //
+// *************************************************************************************** //
+
 function addMouseListeners() {
 	document.querySelector('.meme-text').addEventListener('keyup', dynamicText);
 	document.querySelector('#canvas').addEventListener('mousedown', onDownEvent);
@@ -67,6 +77,11 @@ function isPressOnElement(pos) {
 	return isValueInRange(gCurrPos.y, pos.y - lineSize, posEnd.y);
 }
 
+// *************************************************************************************** //
+// *********************************** CANVAS FUNCTIONS ********************************** //
+// *************************************************************************************** //
+
+
 function resetCanvas(imgUrl) {
 	gImg = new Image();
 	gImg.url = gImg.src = imgUrl;
@@ -76,6 +91,10 @@ function resetCanvas(imgUrl) {
 	}
 	gElCanvas.width = gImg.width;
 	gElCanvas.height = gImg.height;
+}
+
+function clearCanvas() {
+	gCanvasContext.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
 
 function dynamicText() {
@@ -115,14 +134,4 @@ function drawLines() {
 
 function drawText(line) {
 	console.log(line);
-}
-
-function clearCanvas() {
-	gCanvasContext.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-}
-
-function renderCanvas() {
-	clearCanvas();
-	drawImg();
-	drawLines();
 }

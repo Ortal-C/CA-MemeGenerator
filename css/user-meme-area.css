@@ -4,13 +4,13 @@
 	flex-direction: column;
 }
 
-.user-meme-area > * {
+.saved-meme{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	cursor: pointer;
-	max-width: 300px;
-	max-height: 300px;
+	max-width: 350px;
+	max-height: 350px;
 	object-fit: cover;
 }
 
@@ -20,4 +20,3 @@
 	justify-content: center;
 	margin-bottom: 20px;
 }
-

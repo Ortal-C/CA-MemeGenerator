@@ -1,13 +1,11 @@
 'use strict';
-//***************************************************************************************/
-//********************************** MEME CONTROLLER ************************************/
-//***************************************************************************************/
+// *************************************************************************************** //
+// **********************************  MEME CONTROLLER *********************************** //
+// *************************************************************************************** //
+
 
 // CONST
 const NUM_OF_STICKERS = 19;
-
-
-//***************************************************************************************/
 
 function initMeme(){
 	initCanvas();
@@ -44,6 +42,9 @@ function clearInputText(){
 	document.querySelector('.meme-text').value="";
 }
 
+// *************************************************************************************** //
+// *********************************** MEME ACTIONS ************************************** //
+// *************************************************************************************** //
 
 function onSwitchFocus(){
 	switchFocus();
@@ -106,25 +107,13 @@ function onFontChange() {
 }
 
 function onDeleteMeme() {
-	if (confirm('Are you sure you want to discard changes?')) quitEditMeme();
+	if (confirm('Are you sure you want to discard changes?')){
+		quitEditMeme()
+	}
 }
 
-function onDeleteSavedMeme(memeIdx) {
-	if (confirm('Are you sure you want to delete this meme from storage?')){
-		deleteMemeFromStorage(memeIdx);
-		renderUserMemes();
-		console.log('Meme deleted from saved-memes successfully.');
-	};
-	
-
-}
 function onDownloadMeme(elLink) {
 	var imgContent = gElCanvas.toDataURL('image/jpeg');
-	elLink.href = imgContent;
-}
-
-function onDownloadSavedMeme(memeIdx) {
-	var imgContent = JSON.stringify(getSavedMemes()[memeIdx].url).toDataURL('image/jpeg');
 	elLink.href = imgContent;
 }
 
@@ -133,5 +122,17 @@ function onSaveMeme() {
 		const imgContent = JSON.stringify(gElCanvas.toDataURL('image/png'));
 		saveMemeToStorage(imgContent);
 		quitEditMeme();
+	}
+}
+
+// *************************************************************************************** //
+// ******************************** SAVED-MEME ACTIONS *********************************** //
+// *************************************************************************************** //
+
+function onDeleteSavedMeme(memeIdx) {
+	if (confirm('Are you sure you want to delete this meme from storage?')){
+		deleteMemeFromStorage(memeIdx);
+		renderUserMemes();
+		console.log('Meme deleted from saved-memes successfully.');
 	}
 }
