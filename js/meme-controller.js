@@ -143,7 +143,7 @@ function renderUserMemes(){
 	else{
 		const strMemesHtmls = memes.map((meme,idx) => {
 			return `<section class="saved-meme"> 
-						<img class="meme" src="${JSON.parse(meme.url)}" style="max-width:350px;max-height:350px;"/>
+						<img class="meme" src="${JSON.parse(meme.url)}"/>
 						<button class="btn delete" onclick="onDeleteSavedMeme(${idx})" title="Delete changes"></button>
 					</section>`;
 		});
