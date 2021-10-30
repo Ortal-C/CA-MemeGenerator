@@ -33,28 +33,6 @@ function renderKeywords() {
 	// document.querySelector('.keywords').innerHTML = strKeywordsHtmls.join('');
 }
 
-function renderUserMemes(){
-	var memes = loadFromStorage(KEY);
-	console.log(memes);
-	if (memes.length === 0){
-		document.querySelector('.user-meme-area').innerHTML = `<h3>There are no saved memes to show</h4>`
-	}
-	else{
-		const strMemesHtmls = memes.map((meme,idx) => {
-			return `
-			<div class="saved-meme"> 
-				<img class="meme" src="${JSON.parse(meme.url)}"/>
-				<section class="saved-meme-controller">
-					<button class="btn delete" onclick="onDeleteSavedMeme(${idx})" title="Delete changes"></button>
-					<a class="btn download" onclick="onDownloadSavedMeme(${idx})" download="my-meme.jpg" title="Download meme"></a>
-					<button class="btn share" title="Share meme to Facebook"></button>
-				</section>
-			</div`;
-		});
-		document.querySelector('.user-meme-area').innerHTML = strMemesHtmls.join('');
-	}
-}
-
 // *************************************************************************************** //
 // ************************************* NAVIGATION ************************************** //
 // *************************************************************************************** //

@@ -6,7 +6,7 @@
 	grid-template-columns: repeat(5, 50px);
 	grid-template-rows:auto;
 	grid-template-areas:	"text text text text text"
-							"switch-lines switch-up switch-down add-text delete-line"
+							"switch-lines switch-lines-info switch-lines-info add-text delete-line"
 							"increase decrease bold text-case color"
 							"left center right font-type font-type"
 							"stickers stickers stickers stickers stickers"
@@ -73,17 +73,10 @@
 .btn.switch-lines::before {
 	content: '\f309\f30c';
 }
-.btn.switch-up{
-	grid-area: switch-up;
-}
-.btn.switch-up::before{
-	content: '\f30c';
-}
-.btn.switch-down{
-	grid-area: switch-down;
-}
-.btn.switch-down::before{
-	content: '\f309';
+.switch-lines-info{
+	display: block;
+	font-family:  Montserrat-Regular;
+	width:200%;
 }
 
 .btn.font-increase{

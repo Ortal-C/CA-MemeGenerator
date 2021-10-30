@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="css/control-box.css" />
 		<link rel="stylesheet" href="css/main.css" />
 	</head>
-	<body onload="onInit()">
+	<body class="flex direction-column" onload="onInit()">
 		<div class="main-screen" onclick="toggleMenu()"></div>
 		<header>
 			<main class="main-layout main-header flex space-between align-center">
@@ -35,6 +35,7 @@
 					<section class="control-box">
 						<input class="meme-text" type="text" placeholder="Text goes here..." value=""/>
 						<button class="btn switch-lines" title="switch focus lines" onclick="onSwitchFocus()"></button>
+						<button class="btn switch-lines-info">Focus on line #<span>1</span></button>
 						<button class="btn add-text" title="Add another row" onclick="onAddLine()"></button> 
 						<button class="btn delete-line" title="Delete line" onclick="onDeleteLine()"></button> 
 						<button class="btn font font-increase" onclick="onFontSizeChange('increase')" title="Increase font size" ></button>
@@ -59,12 +60,12 @@
 						<button class="btn delete" onclick="onDeleteMeme()" title="Delete changes" ></button>
 						<button class="btn save" title="Save" onclick="onSaveMeme()"></button>
 						<a class="btn download" onclick="onDownloadMeme(this)" download="my-meme.jpg" title="Download meme"></a>
-						<button class="btn share" title="Share meme to Facebook"></button>
+						<button class="btn share" onclick="onShareMeme()" title="Share meme to Facebook"></button>
 						<div class="stickers-area"></div>
 					</section>
 				</main>
 			</article>
-			<section class="user-meme-area grid hide"></section>
+			<section class="user-meme-area hide"></section>
 		</main>
 
 		<footer>
@@ -82,6 +83,7 @@
 		</footer>
 
 		<!-- SCRIPTS  -->
+		<script src="js/services/upload-service.js"></script>
 		<script src="js/services/storage-services.js"></script>
 		<script src="js/services/utils-service.js"></script>
 		<script src="js/services/imgs-service.js"></script>

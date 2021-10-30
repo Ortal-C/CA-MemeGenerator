@@ -48,6 +48,8 @@ function clearInputText(){
 
 function onSwitchFocus(){
 	switchFocus();
+	var focusLine = getMemeLineIdx()+1; 
+	document.querySelector('.btn.switch-lines-info span').innerText = focusLine;
 	document.querySelector('.meme-text').value= getLineText();
 	console.log(`focus on line #${getMemeLineIdx()+1}`);
 }
@@ -125,9 +127,32 @@ function onSaveMeme() {
 	}
 }
 
+function onShareMeme(){
+	uploadImg();
+}
+
 // *************************************************************************************** //
 // ******************************** SAVED-MEME ACTIONS *********************************** //
 // *************************************************************************************** //
+
+function renderUserMemes(){
+	var memes = loadFromStorage(KEY);
+	if (memes.length === 0){
+		document.querySelector('.user-meme-area').innerHTML = `<h3>There are no saved memes to show</h4>`
+	}
+	else{
+		const strMemesHtmls = memes.map((meme,idx) => {
+			return `<section class="saved-meme"> 
+						<img class="meme" src="${JSON.parse(meme.url)}" style="max-width:350px;max-height:350px;"/>
+						<button class="btn delete" onclick="onDeleteSavedMeme(${idx})" title="Delete changes"></button>
+					</section>`;
+		});
+		document.querySelector('.user-meme-area').innerHTML = strMemesHtmls.join('');
+	}
+	//<a class="btn download" onclick="onDownloadSavedMeme(${idx})" download="my-meme.jpg" title="Download meme"></a>
+	//<button class="btn share" title="Share meme to Facebook"></button>
+				
+}
 
 function onDeleteSavedMeme(memeIdx) {
 	if (confirm('Are you sure you want to delete this meme from storage?')){

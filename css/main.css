@@ -29,6 +29,7 @@
 
 /* BASIC */
 body {
+	width: 100vw;
 	margin: 0;
 	font-family: Montserrat-Regular, sans-serif, Symbols;
 	font-size: 1rem;
@@ -76,8 +77,9 @@ a {
 	width: 100%;
 }
 .key-input {
-	width: 280px;
+	width: 300px;
 	height: 2rem;
+	margin: 10px 0px;
 }
 
 /* .keywords {
@@ -154,6 +156,7 @@ footer main {
 	height: 5vh;
 	flex-direction: row;
 	align-items: center;
+	padding: 0px 10px;
 }
 
 .author-links{
