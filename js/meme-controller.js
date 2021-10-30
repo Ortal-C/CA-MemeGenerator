@@ -109,8 +109,22 @@ function onDeleteMeme() {
 	if (confirm('Are you sure you want to discard changes?')) quitEditMeme();
 }
 
+function onDeleteSavedMeme(memeIdx) {
+	if (confirm('Are you sure you want to delete this meme from storage?')){
+		deleteMemeFromStorage(memeIdx);
+		renderUserMemes();
+		console.log('Meme deleted from saved-memes successfully.');
+	};
+	
+
+}
 function onDownloadMeme(elLink) {
 	var imgContent = gElCanvas.toDataURL('image/jpeg');
+	elLink.href = imgContent;
+}
+
+function onDownloadSavedMeme(memeIdx) {
+	var imgContent = JSON.stringify(getSavedMemes()[memeIdx].url).toDataURL('image/jpeg');
 	elLink.href = imgContent;
 }
 

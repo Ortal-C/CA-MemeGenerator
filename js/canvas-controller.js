@@ -3,24 +3,13 @@
 // GLOBAL VARIABLES
 var gElCanvas;
 var gCanvasContext;
-var gMousePos;
+var gCurrPos;
 
 function initCanvas() {
 	gElCanvas = document.getElementById('canvas');
 	gCanvasContext = gElCanvas.getContext('2d');
 	addMouseListeners();
 	addTouchListeners();
-}
-
-function resetCanvas(imgUrl) {
-	gImg = new Image();
-	gImg.url = gImg.src = imgUrl;
-	while (gImg.width > 300 || gImg.height > 300) {
-		gImg.width *= 0.75;
-		gImg.height *= 0.75;
-	}
-	gElCanvas.width = gImg.width;
-	gElCanvas.height = gImg.height;
 }
 
 function addMouseListeners() {
@@ -37,8 +26,11 @@ function addTouchListeners() {
 }
 
 function onDownEvent(ev) {
-	if (ev.type === 'mousedown') {
-		gMousePos = { x: ev.offsetX, y: ev.offsetY };
+	if (['mousedown','touchstart'].includes(ev.type)) {
+		gCurrPos = { 
+			x: ev.offsetX ||ev.targetTouches[0].clientX,
+			y: ev.offsetY ||ev.targetTouches[0].clientY
+		};
 		if (isPressOnElement(getLineStartPos())) {
 			setLineDrag(true);
 			document.body.style.cursor = 'grabbing';
@@ -48,18 +40,21 @@ function onDownEvent(ev) {
 }
 
 function onMoveEvent(ev) {
-	if (ev.type === 'mousemove' && isSelectedLineDrag()) {
-		gMousePos = { x: ev.offsetX, y: ev.offsetY };
+	if (['mousemove', 'touchmove'].includes(ev.type) && isSelectedLineDrag()) {
+		gCurrPos = { 
+			x: ev.offsetX ||ev.targetTouches[0].clientX,
+			y: ev.offsetY ||ev.targetTouches[0].clientY
+		};
 		const currPos = getLineStartPos();
-		const dx = gMousePos.x - currPos.x;
-		const dy = gMousePos.y - currPos.y;
+		const dx = gCurrPos.x - currPos.x;
+		const dy = gCurrPos.y - currPos.y;
 		moveSelectedLine(dx, dy);
 		renderCanvas();
 	}
 }
 
 function onUpEvent(ev) {
-	if (ev.type === 'mouseup' && isSelectedLineDrag()) {
+	if (['mouseup','touchend'].includes(ev.type)){
 		setLineDrag(false);
 		document.body.style.cursor = 'auto';
 		console.log(`Stop moving line #${getMemeLineIdx() + 1}`);
@@ -69,7 +64,18 @@ function onUpEvent(ev) {
 function isPressOnElement(pos) {
 	var posEnd = getLineEndPosition();
 	var lineSize = getLineSize();
-	return isValueInRange(gMousePos.y, pos.y - lineSize, posEnd.y);
+	return isValueInRange(gCurrPos.y, pos.y - lineSize, posEnd.y);
+}
+
+function resetCanvas(imgUrl) {
+	gImg = new Image();
+	gImg.url = gImg.src = imgUrl;
+	while (gImg.width > 300 || gImg.height > 300) {
+		gImg.width *= 0.75;
+		gImg.height *= 0.75;
+	}
+	gElCanvas.width = gImg.width;
+	gElCanvas.height = gImg.height;
 }
 
 function dynamicText() {
@@ -86,7 +92,7 @@ function drawImg() {
 
 function drawLines() {
 	getMemeLines().forEach((line) => {
-		if (line.text){
+		if (line.text) {
 			const fontType = document.querySelector('.font-type').value;
 			gCanvasContext.font = `${line.isBold ? 'bold' : ''} ${line.size}px ${fontType}`;
 			gCanvasContext.fillStyle = line.color;
@@ -97,12 +103,12 @@ function drawLines() {
 			gCanvasContext.fillText(line.text, pos.x, pos.y);
 			gCanvasContext.strokeText(line.text, pos.x, pos.y);
 		}
-		else{
-			var sticker=new Image();
-			sticker.src = `img/stickers/${line.stickerIdx}.png`
-			gCanvasContext.drawImage(sticker, 0, 0, sticker.width*0.1, sticker.height*0.1);
+		else {
+			var sticker = new Image();
+			sticker.src = `img/stickers/${line.stickerIdx}.png`;
+			gCanvasContext.drawImage(sticker,0,0,60,60);
 			gCanvasContext.fillStyle = 'rgba(0, 0, 0, 0)';
-			gCanvasContext.fillRect(0, 0, sticker.widt*0.1, sticker.height*0.1);
+			gCanvasContext.fillRect(0, 0, sticker.widt * 0.1, sticker.height * 0.1);
 		}
 	});
 }

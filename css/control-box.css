@@ -224,19 +224,3 @@
 .btn.save::before{
 	content: '\f0c7';
 }
-
-.user-meme-area {
-	margin: 10px;
-	grid-template-columns: repeat(3, 150px);
-	grid-template-rows: repeat(3, 150px);
-	gap: 20px;
-	justify-content: center;
-}
-
-.user-meme-area > * {
-	cursor: pointer;
-	width: 150px;
-	height: 150px;
-	object-fit: cover;
-}
-

@@ -1,0 +1,23 @@
+.user-meme-area {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.user-meme-area > * {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	cursor: pointer;
+	max-width: 300px;
+	max-height: 300px;
+	object-fit: cover;
+}
+
+.saved-meme-controller{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+

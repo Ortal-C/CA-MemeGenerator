@@ -31,8 +31,16 @@ function renderKeywords() {
 
 function renderUserMemes(){
 	var memes = loadFromStorage(KEY);
-	const strMemesHtmls = memes.map((meme) => {
-		return `<img class="meme" src="${JSON.parse(meme.url)}"/>`;
+	const strMemesHtmls = memes.map((meme,idx) => {
+		return `
+		<div> 
+			<img class="meme" src="${JSON.parse(meme.url)}"/>
+			<section class="saved-meme-controller">
+				<button class="btn delete" onclick="onDeleteSavedMeme(${idx})" title="Delete changes"></button>
+				<a class="btn download" onclick="onDownloadSavedMeme(${idx})" download="my-meme.jpg" title="Download meme"></a>
+				<button class="btn share" title="Share meme to Facebook"></button>
+			</section>
+		</div`;
 	});
 
 	document.querySelector('.user-meme-area').innerHTML = strMemesHtmls.join('');

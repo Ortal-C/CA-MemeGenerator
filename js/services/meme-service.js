@@ -191,3 +191,12 @@ function moveSelectedLine(dx, dy) {
 	pos.y += dy;
 	setLinePosistion(pos);
 }
+
+
+function getSavedMemes(){
+	return loadFromStorage(KEY);
+}
+function deleteMemeFromStorage(idx){
+	gSavedMemes.splice(idx,1);
+	saveToStorage(KEY, gSavedMemes);
+}
