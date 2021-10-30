@@ -29,11 +29,10 @@
 
 /* BASIC */
 body {
-	width: 100vw;
 	margin: 0;
-	font-family: Montserrat-Regular, sans-serif, Symbols;
-	font-size: 1rem;
 	overflow:hidden;
+	font-size: 1rem;
+	font-family: Montserrat-Regular, sans-serif, Symbols;
 }
 
 header {
@@ -43,6 +42,7 @@ header {
 a {
 	font-family: Montserrat-Regular, sans-serif, Symbols;
 	text-decoration: none;
+	color: white;
 }
 
 /* HEADER */
@@ -81,28 +81,6 @@ a {
 	height: 2rem;
 	margin: 10px 0px;
 }
-
-/* .keywords {
-	width: 90%;
-	display: flex;
-	flex-wrap: no-wrap;
-	height: 2rem;
-	margin: 10px;
-	padding: 0px 5px;
-	overflow-x: scroll;
-	overflow-y:hidden;
-} */
-
-/* .keyword {
-	margin: 10px;
-	width:200px;
-	font-size: 0.5rem;
-	font-family: Montserrat-Regular;
-	color: black;
-} */
-/* .keyword:hover {
-	color: tomato;
-} */
 
 .continue-edit {
 	font-family: Symbols, sans-serif;

@@ -1,7 +1,7 @@
 .user-meme-area {
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
+	justify-content: center;
 }
 
 .saved-meme{

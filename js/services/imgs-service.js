@@ -21,7 +21,7 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['sarcastic', 'dont care', 'funny', 'vintage', 'give no fuck'],
+		keywords: ['sarcastic', 'dont care', 'funny', 'vintage', 'give no fuck', 'Sounf of music'],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -36,30 +36,12 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: [
-			'baby',
-			'kids',
-			'infant',
-			'animals',
-			'dogs',
-			'puppy',
-			'sleep',
-			'bedtime',
-			'relax',
-		],
+		keywords: ['baby','kids','infant','animals','dogs','puppy','sleep','bedtime','relax', ],
 	});
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: [
-			'baby',
-			'kids',
-			'infant',
-			'success',
-			'winner',
-			'made it',
-			'mission complete',
-		],
+		keywords: ['baby','kids','infant','success','winner','made it','mission complete',],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -69,7 +51,7 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['condescending', 'tell me', 'bored', 'wonka'],
+		keywords: ['condescending', 'tell me', 'bored', 'wonka', 'kids', 'vintage'],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -79,7 +61,7 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['honest', 'what are you going to do'],
+		keywords: ['honest', 'what are you going to do', 'Israeli', 'Tv show', 'Chaim Hecht'],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -99,7 +81,7 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['third World', 'success', 'kids'],
+		keywords: ['third World', 'success', 'kids', 'happy', 'smile'],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -109,7 +91,7 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['happy'],
+		keywords: ['happy', 'smile', 'baby'],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -119,12 +101,12 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['political', 'happy', 'laugh', 'obama'],
+		keywords: ['political', 'happy', 'laugh','smile', 'obama'],
 	});
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['surprise', 'kiss', 'hug'],
+		keywords: ['surprise', 'kiss', 'hug', 'sports'],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -134,23 +116,17 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['Matrix', 'Morpheus', 'what if i tell you', 'fictional'],
+		keywords: ['Matrix', 'Morpheus', 'what if i tell you', 'fictional', 'legend'],
 	});
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: [
-			'catchphrase',
-			'Pop Culture Reference',
-			'Snowclone',
-			'Lord of the Rings',
-			'quote',
-		],
+		keywords: ['one does not','Pop Culture Reference','Snowclone','Lord of the Rings','quote',],
 	});
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['yeah', 'opra', 'happy', 'exciting', 'success', 'get A'],
+		keywords: ['yeah', 'opra', 'happy', 'smile', 'exciting', 'success', 'get A'],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -165,16 +141,7 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: [
-			'toys',
-			'kids',
-			'cartoon',
-			'funny',
-			'everywhere',
-			'toy story',
-			'woody',
-			'baz',
-		],
+		keywords: ['toys','kids','cartoon','funny','everywhere','toy story','woody','baz',],
 	});
 	gImgs.push({
 		id: ++gIdx,
@@ -184,20 +151,12 @@ function createImgs() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: ['grammer', 'please', 'condescending', 'vintage'],
+		keywords: ['grammer', 'please', 'condescending', 'vintage', 'smile', 'sarcastic'],
 	});
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
-		keywords: [
-			'mayo',
-			'mayonnaise',
-			'cartoon',
-			'kids',
-			'stupid',
-			'patrick star',
-			'patrick',
-		],
+		keywords: ['mayo','mayonnaise','cartoon','kids','stupid','patrick star','patrick',],
 	});
 	gImgs.push({
 		id: ++gIdx,

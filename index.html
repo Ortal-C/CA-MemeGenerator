@@ -11,6 +11,8 @@
 	</head>
 	<body class="flex direction-column" onload="onInit()">
 		<div class="main-screen" onclick="toggleMenu()"></div>
+
+		<!-- HEADER CONTENT -->
 		<header>
 			<main class="main-layout main-header flex space-between align-center">
 				<img class="logo" src="img/logo.png" alt="MemeGen" href="#" title="Meme Generator" />
@@ -22,13 +24,22 @@
 				</ul>	
 			</main>
 		</header>
+
+
+		<!-- MAIN CONTENT  -->
 		<main class="main-layout main-content flex direction-column center-content">
+
+			<!-- MAIN CONTENT  /  FILTER MEMES  -->
 			<nav class="search-keys flex align-center">
-				<input class="key-input" type="text" list="keywords-list" onchange="onSearch()" placeholder="Type memes keyword for filter..."/>
-				<datalist id="keywords-list"></datalist>
+				<input class="key-input" type="text" list="keywords-list" onchange="onSearch()" onclick="this.value =''" placeholder="Search memes tags for filter ..."/>
+				<datalist id="keywords-list"   ></datalist>
 			</nav>
+			
+			<!-- MAIN CONTENT  /  IMGS DISPLAY  -->
 			<button class="main-layout continue-edit hide" onclick="onContinueEdit()"> Continue edit</button>
 			<section class="main-layout main-grid grid"></section>
+
+			<!-- MAIN CONTENT  /  MEME EDITOR  -->
 			<article class="edit-meme-modal hide">
 				<main class="main-layout edit-area flex direction-column align-center">
 					<canvas id="canvas" width="200px" height="200px"></canvas>
@@ -65,9 +76,12 @@
 					</section>
 				</main>
 			</article>
+
+			<!-- MAIN CONTENT  /  USER SAVED MEMES  -->
 			<section class="user-meme-area hide"></section>
 		</main>
 
+		<!-- FOOTER  -->
 		<footer>
 			<main class="main-footer main-layout flex space-between align-center">
 				<img class="logo" src="img/logo.png" alt="MemeGen" href="#" title="Meme Generator" />
@@ -76,9 +90,6 @@
 					<h4><a class="git" href="https://github.com/Ortal-C/Meme-Generator" target="_blank"> </a></h4>
 					<h4><a class="linkedin" href="https://www.linkedin.com/in/ortal--cohen/" target="_blank"> </a></h4>
 				</div>
-					
-					
-				</h4>
 			</main>
 		</footer>
 
