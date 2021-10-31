@@ -5,7 +5,7 @@
 // *************************************************************************************** //
 
 //CONST
-const KEY = 'userMemesDB';
+const KEY = 'memesDB';
 const DEFAULT_TEXT = 'Text goes here...';
 const DEFAULT_SIZE = 30; //in pixels..
 const DEFAULT_ALIGN = 'center';

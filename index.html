@@ -5,8 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Meme Generator</title>
-		<link rel="stylesheet" href="css/user-meme-area.css" />
-		<link rel="stylesheet" href="css/control-box.css" />
+		<link rel="stylesheet" href="css/saved-memes.css" />
+		<link rel="stylesheet" href="css/meme-editor.css" />
 		<link rel="stylesheet" href="css/main.css" />
 	</head>
 	<body class="flex direction-column" onload="onInit()">
@@ -20,23 +20,22 @@
 				<ul class="main-nav flex clean-list">
 					<li><a href="#" onclick="navigateGallery()">Gallery</a></li>
 					<li><a href="#" onclick="navigateUserMemes()">Memes</a></li>
-					<!-- <li><a href="#" onclick="navigateAbout()">About</a></li> -->
 				</ul>	
 			</main>
 		</header>
 
 
 		<!-- MAIN CONTENT  -->
-		<main class="main-layout main-content flex direction-column center-content">
-
-			<!-- MAIN CONTENT  /  FILTER MEMES  -->
+		
+		<!-- MAIN CONTENT  /  FILTER MEMES  -->
+		<main class="main-content flex direction-column center-content">
 			<nav class="search-keys flex align-center">
 				<input class="key-input" type="text" list="keywords-list" onchange="onSearch()" onclick="this.value =''" placeholder="Search memes tags for filter ..."/>
-				<datalist id="keywords-list"   ></datalist>
+				<datalist id="keywords-list"></datalist>
+				<button class="main-layout continue-edit hide" onclick="onContinueEdit()"> Continue edit</button>
 			</nav>
 			
 			<!-- MAIN CONTENT  /  IMGS DISPLAY  -->
-			<button class="main-layout continue-edit hide" onclick="onContinueEdit()"> Continue edit</button>
 			<section class="main-layout main-grid grid"></section>
 
 			<!-- MAIN CONTENT  /  MEME EDITOR  -->
@@ -46,13 +45,14 @@
 					<section class="control-box">
 						<input class="meme-text" type="text" placeholder="Text goes here..." value=""/>
 						<button class="btn switch-lines" title="switch focus lines" onclick="onSwitchFocus()"></button>
-						<button class="btn switch-lines-info">Focus on line #<span>1</span></button>
+						<!-- <button class="btn switch-lines-info">Focus on line #<span>1</span></button> -->
 						<button class="btn add-text" title="Add another row" onclick="onAddLine()"></button> 
 						<button class="btn delete-line" title="Delete line" onclick="onDeleteLine()"></button> 
 						<button class="btn font font-increase" onclick="onFontSizeChange('increase')" title="Increase font size" ></button>
 						<button class="btn font font-decrease" onclick="onFontSizeChange('decrease')" title="Decrease font size" ></button>
 						<button class="btn font font-bold" onclick="onFontWeightChange()" title="Bold" ></button>
 						<button class="btn text-case" onclick="onCaseChange()" title="Change to upper/lower case" >U</button>
+						<input  class="btn color-change" type="color" value="#FFFFFF" onchange="onSetColor(this.value)" title="Change line color">
 						<button class="btn align align-left" onclick="onAlignChange('left')" title="Align text left" ></button>
 						<button class="btn align align-center" onclick="onAlignChange('center')" title="Align text center" ></button>
 						<button class="btn align align-right" onclick="onAlignChange('right')" title="Align text right" ></button>
@@ -66,7 +66,6 @@
 							<option value="times new roman">Times New Roman</option>
 							<option value="verdana">Verdana</option>
 						</select>
-						<input class="btn color-change" type="color" value="#FFFFFF" onchange="onSetColor(this.value)" title="Change line color" />
 						<button class="btn navigate go-back" onclick="navigateGallery()" title="Go Back to Gallery"></button>
 						<button class="btn delete" onclick="onDeleteMeme()" title="Delete changes" ></button>
 						<button class="btn save" title="Save" onclick="onSaveMeme()"></button>
@@ -95,13 +94,14 @@
 
 		<!-- SCRIPTS  -->
 		<script src="js/services/upload-service.js"></script>
-		<script src="js/services/storage-services.js"></script>
+		<script src="js/services/storage-service.js"></script>
 		<script src="js/services/utils-service.js"></script>
-		<script src="js/services/imgs-service.js"></script>
-		<script src="js/services/meme-service.js"></script>
+		<script src="js/services/gallery-service.js"></script>
+		<script src="js/services/canvas-service.js"></script>
+		<script src="js/services/editor-service.js"></script>
 		<script src="js/canvas-controller.js"></script>
-		<script src="js/meme-controller.js"></script>
-		<script src="js/imgs-controller.js"></script>
+		<script src="js/editor-controller.js"></script>
+		<script src="js/gallery-controller.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

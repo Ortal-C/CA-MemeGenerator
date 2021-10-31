@@ -8,8 +8,7 @@ var gCurrPos;
 function initCanvas() {
 	gElCanvas = document.getElementById('canvas');
 	gCanvasContext = gElCanvas.getContext('2d');
-	addMouseListeners();
-	addTouchListeners();
+	addListeners();
 }
 
 function renderCanvas() {
@@ -22,12 +21,18 @@ function renderCanvas() {
 // ******************************* CANVAS EVENTS HANDLER ********************************* //
 // *************************************************************************************** //
 
+function addListeners(){
+	addMouseListeners();
+	addTouchListeners();
+}
+
 function addMouseListeners() {
 	document.querySelector('.meme-text').addEventListener('keyup', dynamicText);
 	document.querySelector('#canvas').addEventListener('mousedown', onDownEvent);
 	document.querySelector('#canvas').addEventListener('mousemove', onMoveEvent);
 	document.querySelector('#canvas').addEventListener('mouseup', onUpEvent);
 }
+
 function addTouchListeners() {
 	document.querySelector('.meme-text').addEventListener('keyup', dynamicText);
 	document.querySelector('#canvas').addEventListener('touchstart', onDownEvent);
@@ -44,7 +49,6 @@ function onDownEvent(ev) {
 		if (isPressOnElement(getLineStartPos())) {
 			setLineDrag(true);
 			document.body.style.cursor = 'grabbing';
-			console.log(`Start moving line #${getMemeLineIdx() + 1}`);
 		}
 	}
 }
@@ -67,14 +71,13 @@ function onUpEvent(ev) {
 	if (['mouseup','touchend'].includes(ev.type)){
 		setLineDrag(false);
 		document.body.style.cursor = 'auto';
-		console.log(`Stop moving line #${getMemeLineIdx() + 1}`);
 	}
 }
 
-function isPressOnElement(pos) {
-	var posEnd = getLineEndPosition();
-	var lineSize = getLineSize();
-	return isValueInRange(gCurrPos.y, pos.y - lineSize, posEnd.y);
+function isPressOnElement(posStart) {
+	const posEnd = getLineEndPosition();
+	const lineSize = getLineSize();
+	return isValueInRange(gCurrPos.y, posStart.y - lineSize, posEnd.y);
 }
 
 // *************************************************************************************** //
@@ -85,9 +88,9 @@ function isPressOnElement(pos) {
 function resetCanvas(imgUrl) {
 	gImg = new Image();
 	gImg.url = gImg.src = imgUrl;
-	while (gImg.width > 300 || gImg.height > 300) {
-		gImg.width *= 0.75;
-		gImg.height *= 0.75;
+	while (gImg.width > 350 || gImg.height > 350) {
+		gImg.width *= 0.9;
+		gImg.height *= 0.9;
 	}
 	gElCanvas.width = gImg.width;
 	gElCanvas.height = gImg.height;
@@ -118,7 +121,7 @@ function drawLines() {
 			gCanvasContext.textAlign = line.align;
 			gCanvasContext.lineWidth = 2;
 			gCanvasContext.strokeStyle = 'black';
-			var pos = line.startPos;
+			const pos = line.startPos;
 			gCanvasContext.fillText(line.text, pos.x, pos.y);
 			gCanvasContext.strokeText(line.text, pos.x, pos.y);
 		}

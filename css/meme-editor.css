@@ -6,7 +6,7 @@
 	grid-template-columns: repeat(5, 50px);
 	grid-template-rows:auto;
 	grid-template-areas:	"text text text text text"
-							"switch-lines switch-lines-info switch-lines-info add-text delete-line"
+							". switch-lines add-text delete-line ."
 							"increase decrease bold text-case color"
 							"left center right font-type font-type"
 							"stickers stickers stickers stickers stickers"
@@ -21,9 +21,10 @@
 	color: #333333;
 }
 
-.meme-text {
+.meme-text input {
 	grid-area:text ;
 	height: 35px;
+	color: #111;
 	background-color: white;
 	border-bottom: 1px solid gray;
 	border-radius: 0%;

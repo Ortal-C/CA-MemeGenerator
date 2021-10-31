@@ -5,12 +5,10 @@
 // *************************************************************************************** //
 
 function onInit() {
-    console.log('Initializing ...');
 	initMeme();
-	initImgs();
+	initGallery();
 	renderKeywords();
-	renderImgs();
-    console.log('App is ready to use.');
+	renderGallery();
 }
 
 function toggleMenu() {
@@ -27,10 +25,6 @@ function renderKeywords() {
 		return `<option value="${keyword}">${keyword}</option>`
 	}) 
 	document.querySelector('#keywords-list').innerHTML = `<option value="All" selected>All</option>` + strListOptionsdHtmls.join('');
-	// const strKeywordsHtmls = keywords.map(keyword=>{
-	// 	return `<a class="keyword" href="#" title="${keyword}">${keyword}</a>`
-	// }) 
-	// document.querySelector('.keywords').innerHTML = strKeywordsHtmls.join('');
 }
 
 // *************************************************************************************** //

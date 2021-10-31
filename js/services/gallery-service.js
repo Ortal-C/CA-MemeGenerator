@@ -9,7 +9,7 @@ var gIdx = 0;
 var gImgs = [];
 var gKeywords;
 
-function createImg(id, url, keywords) {
+function _createImg(id, url, keywords) {
 	return {
 		id,
 		url,
@@ -17,7 +17,7 @@ function createImg(id, url, keywords) {
 	};
 }
 
-function createImgs() {
+function _createGallery() {
 	gImgs.push({
 		id: ++gIdx,
 		url: `img/meme-imgs/${gIdx}.jpg`,
@@ -170,7 +170,7 @@ function createImgs() {
 	});
 }
 
-function createKeywords() {
+function _createKeywords() {
 	gKeywords = {};
 	gImgs.forEach((img) => {
 		img.keywords.forEach((keyword) => {
