@@ -26,26 +26,24 @@
 
 
 		<!-- MAIN CONTENT  -->
-		
-		<!-- MAIN CONTENT  /  FILTER MEMES  -->
 		<main class="main-content flex direction-column center-content">
+			<!-- FILTER MEMES  -->
 			<nav class="search-keys flex align-center">
 				<input class="key-input" type="text" list="keywords-list" onchange="onSearch()" onclick="this.value =''" placeholder="Search memes tags for filter ..."/>
 				<datalist id="keywords-list"></datalist>
 				<button class="main-layout continue-edit hide" onclick="onContinueEdit()"> Continue edit</button>
 			</nav>
 			
-			<!-- MAIN CONTENT  /  IMGS DISPLAY  -->
+			<!-- MAIN GALLERY  -->
 			<section class="main-layout main-grid grid"></section>
 
-			<!-- MAIN CONTENT  /  MEME EDITOR  -->
+			<!-- MEME EDITOR  -->
 			<article class="edit-meme-modal hide">
 				<main class="main-layout edit-area flex direction-column align-center">
 					<canvas id="canvas" width="200px" height="200px"></canvas>
 					<section class="control-box">
 						<input class="meme-text" type="text" placeholder="Text goes here..." value=""/>
 						<button class="btn switch-lines" title="switch focus lines" onclick="onSwitchFocus()"></button>
-						<!-- <button class="btn switch-lines-info">Focus on line #<span>1</span></button> -->
 						<button class="btn add-text" title="Add another row" onclick="onAddLine()"></button> 
 						<button class="btn delete-line" title="Delete line" onclick="onDeleteLine()"></button> 
 						<button class="btn font font-increase" onclick="onFontSizeChange('increase')" title="Increase font size" ></button>
@@ -76,7 +74,7 @@
 				</main>
 			</article>
 
-			<!-- MAIN CONTENT  /  USER SAVED MEMES  -->
+			<!-- USER SAVED MEMES  -->
 			<section class="user-meme-area hide"></section>
 		</main>
 

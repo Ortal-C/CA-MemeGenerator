@@ -48,14 +48,13 @@ function clearInputText(){
 function onSwitchFocus(){
 	switchFocus();
 	document.querySelector('.meme-text').value= getLineText();
-	console.log(`focus on line #${getMemeLineIdx()+1}`);
+	renderCanvas();
 }
 
 function onAddLine(){
 	addNewLine();
 	switchFocus();
 	renderCanvas();
-	console.log(`line added successfully.`);
 }
 
 function onAddSticker(stickerId){
@@ -68,7 +67,6 @@ function onDeleteLine(){
 	deleteSelectedLine();
 	switchFocus();
 	renderCanvas();
-	console.log(`line deleted successfully.`);
 }
 
 function onFontSizeChange(operation) {
